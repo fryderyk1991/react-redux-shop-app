@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const NotFoundPage = () => {
-    return (
-        <h1>NotFoundPage</h1>
-    )
+    return <div>
+        404 Not Found <Link to='/'>Go back to Home Page</Link>
+        </div>;
 }
 
 
