@@ -1,8 +1,6 @@
 
-const url = 'https://api.escuelajs.co/api/v1/products';
-
-
-export const fetchData = async () => {
+export  const fetchShopData = async () => {
+    const url = 'https://api.escuelajs.co/api/v1/products';
     try {
         const response = await fetch(url);
         return response.json()
