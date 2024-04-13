@@ -1,22 +1,27 @@
-import Header from './components/Header';
+import MuiNavbar from './components/MuiNavbar';
+import MuiMobileMenu from './components/MuiMobileMenu';
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 
-import { useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import { fetchProducts } from './redux/reducers/productsSlice';
+import CssBaseline from '@mui/material/CssBaseline';
+
+// import { useEffect } from 'react';
+// import {useDispatch} from 'react-redux';
+// import { fetchProducts } from './redux/reducers/productsSlice';
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
 
-  useEffect(() => {
-    dispatch(fetchProducts())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchProducts())
+  // }, [dispatch])
 
   return (
-    <> 
-    <Header/>
+    <>
+    <CssBaseline />
+    <MuiNavbar/>
+    <MuiMobileMenu />
     <Outlet />
     <Footer />
     </>
