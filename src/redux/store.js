@@ -5,7 +5,7 @@ import interfaceSlice from './reducers/interfaceSlice';
 
 const rootReducer = combineReducers({
     products: productsSlice,
-    interface: interfaceSlice,
+    interface: interfaceSlice
 })
 
 const store = configureStore({

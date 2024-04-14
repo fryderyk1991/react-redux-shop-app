@@ -1,5 +1,5 @@
-import MuiNavbar from './components/MuiNavbar';
-import MuiMobileMenu from './components/MuiMobileMenu';
+import Header from './components/Header';
+import MobileNav from './components/MobileNav';
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 
@@ -20,8 +20,8 @@ function App() {
   return (
     <>
     <CssBaseline />
-    <MuiNavbar/>
-    <MuiMobileMenu />
+    <Header/>
+    <MobileNav />
     <Outlet />
     <Footer />
     </>
