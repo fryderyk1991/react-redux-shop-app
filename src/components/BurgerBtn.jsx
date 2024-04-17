@@ -16,7 +16,7 @@ const BurgerBtn = () => {
           edge="end"
           color="inherit"
           aria-label="nav-mobile-button"
-          sx={{ display: { lg: "none"}, color: 'text.secondary', zIndex: 1300}}
+          sx={{ display: { md: "none"}, color: 'text.secondary', zIndex: 1300}}
           onClick={() => dispatch(setClose())}
         >
           <CloseRoundedIcon />
@@ -27,7 +27,7 @@ const BurgerBtn = () => {
         edge="end"
         color="inherit"
         aria-label="nav-mobile-button"
-        sx={{ display: { lg: "none" } }}
+        sx={{ display: { md: "none" } }}
         onClick={() => dispatch(setOpen())}
       >
       <MenuRoundedIcon />
