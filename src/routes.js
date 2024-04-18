@@ -3,7 +3,7 @@ import ContactPage from "./pages/ContactPage";
 
 export const routes = [
     {   name: 'Home',
-        path: '/',
+        path: '',
         element: HomePage
     },
     {   name: 'Contact',

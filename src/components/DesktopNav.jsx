@@ -16,7 +16,6 @@ const DesktopNav = () => {
               disablePadding
               sx={{
                 fontWeight: 500,
-                color: "white",
                 textTransform: "uppercase",
               }}
             >

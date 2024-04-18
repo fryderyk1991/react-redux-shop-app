@@ -29,7 +29,6 @@ const MobileNav = () => {
               disablePadding
               sx={{
                 fontWeight: 600,
-                color: "text.secondary",
                 textTransform: "uppercase",
               }}
             >

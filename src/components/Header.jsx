@@ -1,5 +1,6 @@
-import { AppBar, Toolbar, IconButton } from "@mui/material";
-import StoreIcon from "@mui/icons-material/Store";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+
+import { Link as ReactRouterLink } from "react-router-dom";
 
 import BurgerBtn from "./BurgerBtn";
 import DesktopNav from "./DesktopNav";
@@ -7,11 +8,9 @@ import DesktopNav from "./DesktopNav";
 
 const Header = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none'}}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <IconButton size="large" edge="start" color="inherit" aria-label="logo">
-          <StoreIcon />
-        </IconButton>
+        <Typography variant="h6" aria-label="logo" component={ReactRouterLink} to='/' sx={{ textDecoration: 'none'}}>SFJ</Typography>
         <DesktopNav />
       <BurgerBtn />
       </Toolbar>
