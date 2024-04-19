@@ -6,21 +6,24 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Button,
 } from "@mui/material";
 
-const GridCard = ({ src, title }) => {
+import CardButtons from './CardButtons';
+
+const GridCard = ({ src, title, price }) => {
   return (
-      <Card sx={{ maxWidth: 350, height: '100%' }}>
-        <CardMedia component="img" image={src}/>
-        <CardContent sx={{ p: 1}}>
-          <Typography variant="caption">
+      <Card sx={{ maxWidth: 350, height: '100%', display: 'flex', flexDirection: 'column'}}>
+        <CardMedia component="img" image={src} alt={title}/>
+        <CardContent sx={{ p: 1, flex: 1}}>
+          <Typography variant="subtitle1" fontWeight={500}>
             {title}
           </Typography>
+          <Typography variant="body1" fontWeight={500}>
+            {price},00 $
+          </Typography>
         </CardContent>
-        <CardActions>
-          {/* <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button> */}
+        <CardActions sx={{ justifyContent: 'space-between'}}>
+          <CardButtons />
         </CardActions>
       </Card>
   );
@@ -29,6 +32,7 @@ const GridCard = ({ src, title }) => {
 GridCard.propTypes = {
   src: PropTypes.string.isRequired, 
   title: PropTypes.string.isRequired, 
+  price: PropTypes.number.isRequired,
 };
 
 export default GridCard

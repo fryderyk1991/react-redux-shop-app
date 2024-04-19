@@ -35,9 +35,6 @@ const theme = createTheme({
 })
 
 function App() {
-
-
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts())
