@@ -18,12 +18,12 @@ const GridCard = ({ src, title, price }) => {
           <Typography variant="subtitle1" fontWeight={500}>
             {title}
           </Typography>
-          <Typography variant="body1" fontWeight={500}>
-            {price},00 $
+          <Typography variant="body1" fontWeight={500} mt={1}>
+            {price},00$
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between'}}>
-          <CardButtons />
+          <CardButtons properIcons={'favorite'}/>
         </CardActions>
       </Card>
   );

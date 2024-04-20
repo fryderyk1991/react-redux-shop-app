@@ -8,6 +8,7 @@ import store from './redux/store';
 
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
+import FavoritePage from './pages/FavoritePage';
 import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         {
           path: "contact",
           element: <ContactPage />,
+        },
+        {
+          path: "favorite",
+          element: <FavoritePage />,
         },
       ],
     },

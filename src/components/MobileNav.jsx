@@ -29,9 +29,9 @@ const MobileNav = () => {
               disablePadding
               sx={{
                 fontWeight: 600,
-                textTransform: "uppercase",
               }}
             >
+
               <ListItemButton
                 component={ReactRouterLink}
                 to={route.path}

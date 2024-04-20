@@ -16,7 +16,6 @@ const DesktopNav = () => {
               disablePadding
               sx={{
                 fontWeight: 500,
-                textTransform: "uppercase",
               }}
             >
               <ListItemButton
