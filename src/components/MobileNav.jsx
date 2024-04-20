@@ -3,6 +3,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setClose } from '../redux/reducers/interfaceSlice';
@@ -31,12 +32,14 @@ const MobileNav = () => {
                 fontWeight: 600,
               }}
             >
-
               <ListItemButton
                 component={ReactRouterLink}
                 to={route.path}
                 onClick={closeDrawer}
               >
+                 <ListItemIcon sx={{ color: 'primary.main', minWidth: '40px'}}>
+                <route.icon />
+              </ListItemIcon>
                 {route.name}
               </ListItemButton>
             </ListItem>

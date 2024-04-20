@@ -2,6 +2,8 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+
 
 import { routes } from "../routes";
 import { Link as ReactRouterLink } from "react-router-dom";
@@ -18,10 +20,13 @@ const DesktopNav = () => {
                 fontWeight: 500,
               }}
             >
-              <ListItemButton
+              <ListItemButton sx={{ ":hover": { color: 'primary.main', background: 'none' } }}
                 component={ReactRouterLink}
                 to={route.path}
               >
+                  <ListItemIcon sx={{ color: 'primary.main', minWidth: '35px'}}>
+                <route.icon />
+              </ListItemIcon>
                 {route.name}
               </ListItemButton>
             </ListItem>
