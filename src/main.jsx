@@ -9,6 +9,7 @@ import store from './redux/store';
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
 import FavoritePage from './pages/FavoritePage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
 import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
           path: "favorite",
           element: <FavoritePage />,
         },
+        {
+          path: "product-details/:id",
+          element: <ProductDetailsPage />
+        }
       ],
     },
   ]);
