@@ -16,7 +16,6 @@ const GridContainer = () => {
                 <GridCard src={item.images[0]} title={item.title} price={item.price} id={item.id} />
             </Grid>
         ))}
-
     </Grid>
   );
 };
