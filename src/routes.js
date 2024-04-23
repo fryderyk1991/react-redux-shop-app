@@ -2,12 +2,12 @@ import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
 import FavoritePage from "./pages/FavoritePage";
 
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import EmailIcon from '@mui/icons-material/Email';
+import HomeIcon from '@mui/icons-material/Home';
 
 export const routes = [
-  { name: "Home", path: "", element: HomePage, icon: HomeOutlinedIcon },
-  { name: "Contact", path: "contact", element: ContactPage, icon: EmailOutlinedIcon },
-  { name: "Favorite", path: "favorite", element: FavoritePage, icon: FavoriteBorderOutlinedIcon },
+  { name: "Home", path: "", element: HomePage, icon: HomeIcon },
+  { name: "Contact", path: "contact", element: ContactPage, icon: EmailIcon },
+  { name: "Favorite", path: "favorite", element: FavoritePage, icon: FavoriteIcon },
 ];
