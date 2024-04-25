@@ -5,11 +5,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setClose } from '../redux/reducers/interfaceSlice';
 
 import { routes } from "../routes";
 import { Link as ReactRouterLink } from "react-router-dom";
+
 
 const MobileNav = () => {
   const isOpen = useSelector((state) => state.interface.isOpen);
@@ -42,7 +44,9 @@ const MobileNav = () => {
               </ListItemIcon>
                 {route.name}
               </ListItemButton>
+           
             </ListItem>
+            
           ))}
         </List>
       </Box>
