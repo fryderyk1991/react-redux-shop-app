@@ -40,16 +40,20 @@ const ProductDetailsPage = () => {
             />
           </motion.div>
         </Box>
-        <Grid container spacing={1} sx={{ my: 2, flexWrap: "nowrap" }}>
+        <Grid container spacing={1} sx={{ my: 2, flexWrap: "nowrap", p: 0 }}>
           {product.images.map((img, index) => (
             <Grid
               key={index}
               item
-              sx={{ maxWidth: 100, cursor: "pointer"}}
+              sx={{maxWidth: 100, cursor: "pointer"}}
               component="div"
               onClick={(e) => handleThumbnailClick(index, e)}
             >
-              <img src={img} style={{ width: "100%", objectFit: "cover"}} />
+                {border === img ? (
+                  <img src={img} style={{ width: "100%", objectFit: "cover", outline: '3px solid #ffac33', transition: 'outline 0.5s' }} />
+                ) : (
+                  <img src={img} style={{ width: "100%", objectFit: "cover" , outline: '3px solid transparent'}} />
+                )}
             </Grid>
           ))}
         </Grid>
