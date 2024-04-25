@@ -11,16 +11,17 @@ import { useState } from "react";
 
 const ProductDetailsPage = () => {
   const [image, setImage] = useState(0);
+  const [border, setBorder] = useState(null)
   const products = useSelector((state) => state.products.productsData);
   const { id } = useParams();
   const product = findProduct(products, +id);
 
 
-  const handleThumbnailClick = (newImage) => {
+  const handleThumbnailClick = (newImage, e) => {
+    console.log(border)
+    setBorder(e.target.src)
     setImage(newImage);
   };
-
- 
 
   return (
     <Container sx={{ display: { md: "flex" } }}>
@@ -46,9 +47,8 @@ const ProductDetailsPage = () => {
               item
               sx={{ maxWidth: 100, cursor: "pointer"}}
               component="div"
-              onClick={() => handleThumbnailClick(index)}
+              onClick={(e) => handleThumbnailClick(index, e)}
             >
-            
               <img src={img} style={{ width: "100%", objectFit: "cover"}} />
             </Grid>
           ))}
