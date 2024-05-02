@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 import { useEffect } from 'react';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchProducts } from './redux/reducers/productsSlice';
 
 
@@ -37,8 +37,9 @@ const theme = createTheme({
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchProducts());
   }, [dispatch])
+
 
   return (
     <ThemeProvider theme={theme}>

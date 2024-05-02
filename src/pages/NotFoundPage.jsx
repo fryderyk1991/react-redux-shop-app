@@ -1,13 +1,12 @@
-import { Link, useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
-    const error = useRouteError()
-    console.log(error)
-    return <div>
-        <Link to='/'>Go back to Home Page</Link>
-        <p>{error.statusText} </p>
-        </div>;
-}
-
+  return (
+    <div>
+      <h2>Page not found</h2>
+      <Link to="/">Back to homepage</Link>
+    </div>
+  );
+};
 
 export default NotFoundPage;

@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import GridCard from "./GridCard";
 
+
 const GridContainer = () => {    
   const gridItems = useSelector(state => state.products.productsData); 
   // const startIndex = 2;

@@ -19,7 +19,7 @@ const CardButtons = ( { properIcons } ) => {
             <ShoppingBagOutlinedIcon sx={{ mr:  2 }} />
             <Typography >Add to Cart</Typography> 
             </Button>
-          <Button variant='outlined' sx={{ flex: 0, p: 1.5, ml: 1 }}>
+          <Button variant='outlined' sx={{ flex: 0, p: 1.5, ml: 1}} >
           <FavoriteBorderIcon />
           </Button>
         </Box>

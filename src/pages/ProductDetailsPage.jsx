@@ -10,22 +10,24 @@ import CardButtons from "../components/CardButtons";
 import { useState } from "react";
 
 const ProductDetailsPage = () => {
-  const [image, setImage] = useState(0);
-  const [border, setBorder] = useState(null)
-  const products = useSelector((state) => state.products.productsData);
   const { id } = useParams();
+  const [image, setImage] = useState(0);
+  const [border, setBorder] = useState(null);
+  const products = useSelector((state) => state.products.productsData);
   const product = findProduct(products, +id);
 
-
   const handleThumbnailClick = (newImage, e) => {
-    console.log(border)
     setBorder(e.target.src)
     setImage(newImage);
   };
 
+
+
   return (
-    <Container sx={{ display: { md: "flex" } }}>
-      <Box sx={{ flex: 1 }}>
+  <Container sx={{ display: { md: "flex" } }}>
+    {product && (
+      <>
+        <Box sx={{ flex: 1 }}>
         <Box sx={{ maxWidth: 900 }}>
           <motion.div
             key={image}
@@ -36,43 +38,52 @@ const ProductDetailsPage = () => {
           >
             <img
               src={product.images[image]}
+              alt={product.title}
               style={{ width: "100%", objectFit: "cover", position: 'absolute', left: '0' }}
             />
           </motion.div>
         </Box>
-        <Grid container spacing={1} sx={{ my: 2, flexWrap: "nowrap", p: 0 }}>
-          {product.images.map((img, index) => (
+      <Grid container sx={{ my: 2, flexWrap: "nowrap", gap: 1}}>
+        {product.images.map((img, index) => (
             <Grid
               key={index}
               item
-              sx={{maxWidth: 100, cursor: "pointer"}}
+              sx={{ maxWidth: 100, cursor: "pointer" }}
               component="div"
               onClick={(e) => handleThumbnailClick(index, e)}
             >
                 {border === img ? (
-                  <img src={img} style={{ width: "100%", objectFit: "cover", outline: '3px solid #ffac33', transition: 'outline 0.5s' }} />
+                  <img src={img} alt={product.title} style={{ width: "100%", height: '100%', objectFit: "cover", outline: '3px solid #ffac33', transition: 'outline 0.3s ease-out'}} />
                 ) : (
-                  <img src={img} style={{ width: "100%", objectFit: "cover" , outline: '3px solid transparent'}} />
+                  <img src={img} style={{ width: "100%", height: '100%', objectFit: "cover" , outline: '3px solid transparent'}} />
                 )}
             </Grid>
-          ))}
-        </Grid>
-      </Box>
-      <Box sx={{ flex: 1, p: { md: 5, lg: 8, xl: 10 } }}>
-        <Typography variant="h5">{product.title}</Typography>
-        <Typography variant="body1" sx={{ mt: 1 }}>
-          {product.description}
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ mt: 1, fontWeight: 500, fontSize: 20 }}
-        >
-          ${product.price}.00
-        </Typography>
-        <CardButtons properIcons={"both"} />
-      </Box>
-    </Container>
+          ))
+        }
+      </Grid>
+    </Box>
+    <Box sx={{ flex: 1, p: { md: 5, lg: 8, xl: 10 } }}>
+        <>
+          <Typography variant="h5">{product.title}</Typography>
+          <Typography variant="body1" sx={{ mt: 1 }}>
+            {product.description}
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ mt: 1, fontWeight: 500, fontSize: 20 }}
+          >
+            ${product.price},00
+          </Typography>
+          <CardButtons properIcons={"both"} />
+        </>
+    </Box>
+    </>
+    )}
+</Container>
   );
 };
 
 export default ProductDetailsPage;
+
+
+

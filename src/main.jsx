@@ -11,12 +11,14 @@ import ContactPage from "./pages/ContactPage";
 import FavoritePage from './pages/FavoritePage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import NotFoundPage from "./pages/NotFoundPage";
+import ProductsError from './pages/ProductsError';
+import { productDetailsPageLoader } from './helpers/detailsPageLoader';
+
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
-      errorElement: <NotFoundPage />,
       children: [
         {
           path: "",
@@ -31,10 +33,15 @@ const router = createBrowserRouter([
           element: <FavoritePage />,
         },
         {
-          path: "product-details/:id",
+          path: "product/:id",
           element: <ProductDetailsPage />,
+          loader: productDetailsPageLoader,
+          errorElement: <ProductsError />
         },
-       
+        {
+          path: "*",
+          element: <NotFoundPage />,
+        },
       ],
     },
   ]);

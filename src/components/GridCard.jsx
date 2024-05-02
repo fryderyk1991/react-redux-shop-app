@@ -18,7 +18,7 @@ const GridCard = ({ src, title, price, id }) => {
   const navigate = useNavigate()
 
   const handleClick = (e) => {
-    navigate(`product-details/${e.target.dataset.id}`)
+    navigate(`product/${e.target.dataset.id}`)
   };
 
   return (
