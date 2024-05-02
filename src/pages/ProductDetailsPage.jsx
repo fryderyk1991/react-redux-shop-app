@@ -7,21 +7,25 @@ import { useSelector } from "react-redux";
 import { findProduct } from "../helpers/findProduct";
 import CardButtons from "../components/CardButtons";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const [image, setImage] = useState(0);
-  const [border, setBorder] = useState(null);
   const products = useSelector((state) => state.products.productsData);
   const product = findProduct(products, +id);
+  const [border, setBorder] = useState(null);
 
   const handleThumbnailClick = (newImage, e) => {
     setBorder(e.target.src)
     setImage(newImage);
   };
 
-
+  useEffect(() => {
+    if(product) {
+      setBorder(product.images[0])
+    }
+  },[product])
 
   return (
   <Container sx={{ display: { md: "flex" } }}>
