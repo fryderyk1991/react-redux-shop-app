@@ -1,4 +1,3 @@
-
 export const productDetailsPageLoader = async ({ params }) => {
     const { id } = params;
 
