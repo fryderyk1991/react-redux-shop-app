@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 import { findProduct } from "../helpers/findProduct";
 import CardButtons from "../components/CardButtons";
+import LoadCircle from "../components/LoadCircle";
 
 import { useState, useEffect } from "react";
 
@@ -29,7 +30,7 @@ const ProductDetailsPage = () => {
 
   return (
   <Container sx={{ display: { md: "flex" } }}>
-    {product && (
+    {product ? (
       <>
         <Box sx={{ flex: 1 }}>
         <Box sx={{ maxWidth: 900 }}>
@@ -82,6 +83,8 @@ const ProductDetailsPage = () => {
         </>
     </Box>
     </>
+    ) : (
+      <LoadCircle />
     )}
 </Container>
   );

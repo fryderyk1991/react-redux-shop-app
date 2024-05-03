@@ -6,9 +6,6 @@ import GridCard from "./GridCard";
 
 const GridContainer = () => {    
   const gridItems = useSelector(state => state.products.productsData); 
-  // const startIndex = 2;
-  // const stopIndex = 41;
-  // const realData = gridItems.slice(startIndex, stopIndex);
 
   return (
     <Grid container spacing={1} sx={{ my: 4 }}>
