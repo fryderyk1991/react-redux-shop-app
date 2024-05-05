@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
 import FavoritePage from './pages/FavoritePage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import AuthenticationPage from './pages/AuthenticationPage';
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductsError from './pages/ProductsError';
 import { productDetailsPageLoader } from './helpers/detailsPageLoader';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           element: <ProductDetailsPage />,
           loader: productDetailsPageLoader,
           errorElement: <ProductsError />
+        },
+        {
+          path: "authentication",
+          element: <AuthenticationPage />,
         },
         {
           path: "*",
