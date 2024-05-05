@@ -7,10 +7,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmailIcon from '@mui/icons-material/Email';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PersonIcon from '@mui/icons-material/Person';
+// import PersonIcon from '@mui/icons-material/Person';
 
 export const routes = [
-  { name: "Sign up | Log in", path: "", element: HomePage, icon: PersonIcon },
+  // { name: "Log in", path: "", element: HomePage, icon: PersonIcon },
   { name: "Home", path: "", element: HomePage, icon: HomeIcon },
   { name: "Contact", path: "contact", element: ContactPage, icon: EmailIcon },
   { name: "Favorite", path: "favorite", element: FavoritePage, icon: FavoriteIcon },

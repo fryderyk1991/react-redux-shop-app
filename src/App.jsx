@@ -40,7 +40,6 @@ function App() {
     dispatch(fetchProducts());
   }, [dispatch])
 
-
   return (
     <ThemeProvider theme={theme}>
     <CssBaseline /> 
