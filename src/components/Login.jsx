@@ -1,5 +1,7 @@
 import { Box, FormControl, InputLabel, OutlinedInput, Button, Typography, Link} from '@mui/material'
 
+import { Link as ReactRouterLink } from "react-router-dom";
+
 const Login = () => {
   return (
     <Box sx={{ textAlign: 'center', my: 5}}>
@@ -26,9 +28,10 @@ const Login = () => {
     </FormControl>
     <Button type='submit' variant='contained' sx={{mt: 2, width: '100%', textTransform: 'capitalize', "&:hover": { backgroundColor: 'primary.main'}, color: 'white'}}>Log in</Button>
   </Box>
-  <Typography variant='subtitle' sx={{mt: 2}}>Don&apos;t have an account?<Link variant='subtitle' sx={{ textDecoration: 'none', fontWeight: 600, cursor: 'pointer'  }}> Sign up</Link></Typography>
+  <Typography variant='subtitle' sx={{mt: 2}}>Don&apos;t have an account? <Link variant='subtitle' component={ReactRouterLink} to='/auth/signup' sx={{ textDecoration: 'none', fontWeight: 600, cursor: 'pointer'}}>Sign up</Link></Typography>
   </Box>
   )
 }
+
 
 export default Login

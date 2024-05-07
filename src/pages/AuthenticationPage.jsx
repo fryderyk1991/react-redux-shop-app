@@ -1,10 +1,10 @@
 import { Container } from "@mui/material"
-// import Signup from "../components/Signup"
-import Login from "../components/Login"
+import { Outlet } from "react-router-dom"
+
 const AuthenticationPage = () => {
   return (
     <Container maxWidth="sm">
-      <Login />
+      <Outlet />
     </Container>
   )
 }

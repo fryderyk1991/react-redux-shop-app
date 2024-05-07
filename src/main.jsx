@@ -11,6 +11,8 @@ import ContactPage from "./pages/ContactPage";
 import FavoritePage from './pages/FavoritePage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import AuthenticationPage from './pages/AuthenticationPage';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductsError from './pages/ProductsError';
 import { productDetailsPageLoader } from './helpers/detailsPageLoader';
@@ -40,8 +42,22 @@ const router = createBrowserRouter([
           errorElement: <ProductsError />
         },
         {
-          path: "authentication",
+          path: "auth",
           element: <AuthenticationPage />,
+          children: [
+            {
+              path: "", 
+              element: <Login />
+            },
+            {
+              path: "login",
+              element: <Login />
+            },
+            {
+              path: "signup",
+              element: <Signup />
+            }
+          ]
         },
         {
           path: "*",
@@ -49,6 +65,7 @@ const router = createBrowserRouter([
         },
       ],
     },
+ 
   ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
