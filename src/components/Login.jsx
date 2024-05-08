@@ -2,7 +2,19 @@ import { Box, FormControl, InputLabel, OutlinedInput, Button, Typography, Link} 
 
 import { Link as ReactRouterLink } from "react-router-dom";
 
+import { authFields } from '../helpers/formFields';
+
 const Login = () => {
+  const logInputs = [ ...authFields ];
+  const loginFields = [logInputs[0], logInputs[2]];
+
+  const inputs = loginFields.map((field, key) => (
+    <FormControl key={key} sx={{ width: '100%', mb: 1}}>
+      <InputLabel htmlFor={field.label}>{field.label}</InputLabel>
+        <OutlinedInput name={field.name} label={field.label} type={field.type}/>
+    </FormControl>
+))
+
   return (
     <Box sx={{ textAlign: 'center', my: 5}}>
        <Typography variant="h6" aria-label="logo" fontSize='32px'>SFJ</Typography>
@@ -12,11 +24,13 @@ const Login = () => {
     noValidate
     autoComplete="off"
   >
-    <FormControl sx={{ width: '100%', mb: 1}}>
+    {/* <FormControl sx={{ width: '100%', mb: 1}}>
       <InputLabel htmlFor="email">Email</InputLabel>
       <OutlinedInput
         id="email"
-        label="Email"/>
+        label="Email"
+        type='email'
+        />
     </FormControl>
     <FormControl  sx={{ width: '100%', mb: 1}}>
       <InputLabel htmlFor="password">Password</InputLabel>
@@ -25,7 +39,9 @@ const Login = () => {
         label="Password"
         type="password"
       />
-    </FormControl>
+    </FormControl> */}
+  {inputs}
+    
     <Button type='submit' variant='contained' sx={{mt: 2, width: '100%', textTransform: 'capitalize', "&:hover": { backgroundColor: 'primary.main'}, color: 'white'}}>Log in</Button>
   </Box>
   <Typography variant='subtitle' sx={{mt: 2}}>Don&apos;t have an account? <Link variant='subtitle' component={ReactRouterLink} to='/auth/signup' sx={{ textDecoration: 'none', fontWeight: 600, cursor: 'pointer'}}>Sign up</Link></Typography>
