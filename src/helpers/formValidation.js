@@ -21,16 +21,14 @@ export const validation = (values, fields) => {
     return errors;
  }
  export const validateInput = (name, fields, value) => {
-    let error = '';
     if(fields) {
        const field = fields.find(f => f.name === name);
-       if(field.required && value.length === 0) {
-          error = 'Field is empty!';
+       if(field.required && value.trim() === '') {
+          return 'Field is empty!';
        }
        if(field.pattern && !field.pattern.test(value)) {
-         error = `Invalid ${name} format!`;
+         return `Invalid ${name} format!`;
       }
-      
     }
-    return error;
+    return '';
  }
