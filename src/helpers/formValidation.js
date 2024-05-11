@@ -25,11 +25,12 @@ export const validation = (values, fields) => {
     if(fields) {
        const field = fields.find(f => f.name === name);
        if(field.required && value.length === 0) {
-          error = 'Field is empty';
+          error = 'Field is empty!';
        }
        if(field.pattern && !field.pattern.test(value)) {
-          error = `Invalid ${name} format!`;
-       }
+         error = `Invalid ${name} format!`;
+      }
+      
     }
     return error;
  }

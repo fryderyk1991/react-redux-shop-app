@@ -27,21 +27,15 @@ const handleFieldChange = e => {
   }));
   const error = validateInput(name, authFields, value);
   setErrors(prevState => ({
-    errors: {
-        ...prevState.errors,
+        ...prevState,
         [name]: error
-    }
 }));
 }
 
 const handleSubmit = e => {
   e.preventDefault();
-
   const errors = validation(values, authFields);
-  setErrors({
-      errors: errors,
-  })
-
+  setErrors(errors)
   if(Object.keys(errors).length === 0) {
     /// zrob cos jesli formularz  bedzie ok 
       setValues(prevValues => ({
@@ -52,15 +46,15 @@ const handleSubmit = e => {
      }))
   }
 } 
-
-
   const inputs = authFields.map((field, key) => (
-      <FormControl key={key} sx={{ width: '100%', mb: 1}}>
-        <InputLabel htmlFor={field.label}>{field.label} </InputLabel>
+      <FormControl key={key} sx={{ width: '100%', my: 1}}>
+        <InputLabel htmlFor={field.label}>{field.label}</InputLabel>
           <OutlinedInput name={field.name} label={field.label} type={field.type} onChange={handleFieldChange} value={values[field.name]}/>
+          {errors[field.name] && (
+            <FormHelperText sx={{color: 'red'}}>{errors[field.name]}</FormHelperText>
+          )}
       </FormControl>
   ))
-
   return (
     <Box sx={{ textAlign: 'center', my: 5}}>
        <Typography variant="h6" aria-label="logo" fontSize='32px'>SFJ</Typography>
@@ -72,29 +66,6 @@ const handleSubmit = e => {
     onSubmit={handleSubmit}
   >
     {inputs}
-    {/* <FormControl sx={{ width: '100%', mb: 1}}>
-      <InputLabel htmlFor="email">Email</InputLabel>
-      <OutlinedInput
-        id="email"
-        label="Email"
-        type='email'/>
-    </FormControl>
-    <FormControl  sx={{ width: '100%', mb: 1}}>
-      <InputLabel htmlFor="username">Username</InputLabel>
-      <OutlinedInput
-        id="username"
-        label="Username"
-        type="text"
-      />
-    </FormControl>
-    <FormControl  sx={{ width: '100%', mb: 1}}>
-      <InputLabel htmlFor="password">Password</InputLabel>
-      <OutlinedInput
-        id="password"
-        label="Password"
-        type="password"
-      />
-    </FormControl> */}
     <Button type='submit' variant='contained' sx={{mt: 2, width: '100%', textTransform: 'capitalize', "&:hover": { backgroundColor: 'primary.main'}, color: 'white'}}>Sign Up</Button>
   </Box>
   <Typography variant='subtitle' sx={{mt: 2}}>Have an account? <Link variant='subtitle' component={ReactRouterLink} to='/auth/login' sx={{ textDecoration: 'none', fontWeight: 600, cursor: 'pointer'}}>Log in</Link></Typography>
