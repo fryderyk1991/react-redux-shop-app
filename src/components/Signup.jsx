@@ -7,70 +7,137 @@ import { validation, validateInput } from '../helpers/formValidation';
 
 import { useState } from 'react';
 
+import {
+  createUserWithEmailAndPassword,
+  // signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 
-// import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from "../../firebase/firebaseConfig";
 
 const Signup = () => {
-const [values, setValues] = useState({
-  email: '',
-  username: '',
-  password: '',
-});
-const [errors, setErrors] = useState({});
+  const [values, setValues] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
 
-const handleFieldChange = e => {
-  const { name, value } = e.target;
+  const handleSignup = async () => {
+    const { email, username, password } = values;
 
-  setValues(prevValues => ({
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      await updateProfile(user, { displayName: username})
+    }
+    catch(err) {
+      console.log(err)
+    }
+    
+  };
+
+  const handleFieldChange = (e) => {
+    const { name, value } = e.target;
+
+    setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
-  }));
-  const error = validateInput(name, authFields, value);
-  setErrors(prevState => ({
-        ...prevState,
-        [name]: error
-}));
-}
+    }));
+    const error = validateInput(name, authFields, value);
+    setErrors((prevState) => ({
+      ...prevState,
+      [name]: error,
+    }));
+  };
 
-const handleSubmit = e => {
-  e.preventDefault();
-  const errors = validation(values, authFields);
-  setErrors(errors)
-  if(Object.keys(errors).length === 0) {
-    /// zrob cos jesli formularz  bedzie ok 
-      setValues(prevValues => ({
-       ...prevValues,
-       email: '',
-       username: '',
-       password: '',
-     }))
-  }
-} 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validation(values, authFields);
+    setErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      handleSignup()
+      setValues((prevValues) => ({
+        ...prevValues,
+        email: "",
+        username: "",
+        password: "",
+      }));
+    }
+  };
   const inputs = authFields.map((field, key) => (
-      <FormControl key={key} sx={{ width: '100%', my: 1}}>
-        <InputLabel htmlFor={field.label}>{field.label}</InputLabel>
-          <OutlinedInput name={field.name} label={field.label} type={field.type} onChange={handleFieldChange} value={values[field.name]}/>
-          {errors[field.name] && (
-            <FormHelperText sx={{color: 'red'}}>{errors[field.name]}</FormHelperText>
-          )}
-      </FormControl>
-  ))
+    <FormControl
+      key={key}
+      sx={{ width: "100%", my: 1.8, position: "relative" }}
+    >
+      <InputLabel htmlFor={field.label}>{field.label}</InputLabel>
+      <OutlinedInput
+        name={field.name}
+        label={field.label}
+        type={field.type}
+        onChange={handleFieldChange}
+        value={values[field.name]}
+        sx={{
+          "& fieldset": {
+            borderColor: errors[field.name] && "red",
+          },
+        }}
+      />
+      {errors[field.name] && (
+        <FormHelperText
+          sx={{
+            color: "red",
+            fontWeight: 500,
+            position: "absolute",
+            bottom: -20,
+            ml: 1,
+          }}
+        >
+          {errors[field.name]}
+        </FormHelperText>
+      )}
+    </FormControl>
+  ));
   return (
-    <Box sx={{ textAlign: 'center', my: 5}}>
-       <Typography variant="h6" aria-label="logo" fontSize='32px'>SFJ</Typography>
-    <Box
-    component="form"
-    sx={{maxWidth: 300, mx: 'auto', my: 2}}
-    noValidate
-    autoComplete="off"
-    onSubmit={handleSubmit}
-  >
-    {inputs}
-    <Button type='submit' variant='contained' sx={{mt: 2, width: '100%', textTransform: 'capitalize', "&:hover": { backgroundColor: 'primary.main'}, color: 'white'}}>Sign Up</Button>
-  </Box>
-  <Typography variant='subtitle' sx={{mt: 2}}>Have an account? <Link variant='subtitle' component={ReactRouterLink} to='/auth/login' sx={{ textDecoration: 'none', fontWeight: 600, cursor: 'pointer'}}>Log in</Link></Typography>
-  </Box>
-  )
-}
+    <Box sx={{ textAlign: "center", my: 5 }}>
+      <Typography variant="h6" aria-label="logo" fontSize="32px">
+        SFJ
+      </Typography>
+      <Box
+        component="form"
+        sx={{ maxWidth: 300, mx: "auto", my: 2 }}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        {inputs}
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            mt: 3,
+            width: "100%",
+            textTransform: "capitalize",
+            "&:hover": { backgroundColor: "primary.main" },
+            color: "white",
+          }}
+        >
+          Sign Up
+        </Button>
+      </Box>
+      <Typography variant="subtitle" sx={{ mt: 2 }}>
+        Have an account?{" "}
+        <Link
+          variant="subtitle"
+          component={ReactRouterLink}
+          to="/auth/login"
+          sx={{ textDecoration: "none", fontWeight: 600, cursor: "pointer" }}
+        >
+          Log in
+        </Link>
+      </Typography>
+    </Box>
+  );
+};
 
 export default Signup  

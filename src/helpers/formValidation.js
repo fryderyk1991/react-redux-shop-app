@@ -29,6 +29,9 @@ export const validation = (values, fields) => {
        if(field.pattern && !field.pattern.test(value)) {
          return `Invalid ${name} format!`;
       }
+      if(field.name === 'password' && value.length < 6) {
+         return `Password must be at least 6 characters`
+      }
     }
     return '';
  }
