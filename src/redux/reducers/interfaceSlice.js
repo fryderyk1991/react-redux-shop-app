@@ -14,7 +14,7 @@ export const interfaceSlice = createSlice({
     setClose: (state) => {
       state.isOpen = false;
     },
-  },
+  },  
 });
 
 export const { setOpen, setClose } = interfaceSlice.actions;

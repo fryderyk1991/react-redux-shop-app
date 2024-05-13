@@ -8,8 +8,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { isLoading, LoginUser } from './redux/reducers/userSlice';
 import { fetchProducts } from './redux/reducers/productsSlice';
+
+import { auth } from '../firebase/firebaseConfig';
 
 
 const theme = createTheme({
@@ -35,9 +40,24 @@ const theme = createTheme({
 })
 
 function App() {
+  const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
+
+  console.log(user)
   useEffect(() => {
     dispatch(fetchProducts());
+  }, [dispatch])
+  
+  useEffect(() => {
+    auth.onAuthStateChanged(authUser => {
+      if(authUser) {
+        dispatch(LoginUser({
+          uid: authUser.uid,
+          username: authUser.displayName,
+          email: authUser.email,
+        })
+      )}
+    })
   }, [dispatch])
 
   return (

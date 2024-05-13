@@ -25,16 +25,15 @@ const Signup = () => {
 
   const handleSignup = async () => {
     const { email, username, password } = values;
-
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       await updateProfile(user, { displayName: username})
     }
-    catch(err) {
-      console.log(err)
+    catch(error) {
+      const errorMessage = error.message;
+      console.log(errorMessage)
     }
-    
   };
 
   const handleFieldChange = (e) => {
@@ -57,6 +56,7 @@ const Signup = () => {
     setErrors(errors);
     if (Object.keys(errors).length === 0) {
       handleSignup()
+
       setValues((prevValues) => ({
         ...prevValues,
         email: "",
