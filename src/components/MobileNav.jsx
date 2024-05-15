@@ -14,7 +14,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 
 const MobileNav = () => {
-  const user = useSelector(state => state.user.user)
+  // const user = useSelector(state => state.user.user)
   const isOpen = useSelector((state) => state.interface.isOpen);
   const dispatch = useDispatch();
 

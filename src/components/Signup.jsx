@@ -22,13 +22,14 @@ const Signup = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  
 
   const handleSignup = async () => {
     const { email, username, password } = values;
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      await updateProfile(user, { displayName: username})
+      await updateProfile(user, { displayName: username  })
     }
     catch(error) {
       const errorMessage = error.message;
@@ -56,7 +57,6 @@ const Signup = () => {
     setErrors(errors);
     if (Object.keys(errors).length === 0) {
       handleSignup()
-
       setValues((prevValues) => ({
         ...prevValues,
         email: "",

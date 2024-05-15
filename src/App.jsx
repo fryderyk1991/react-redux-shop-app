@@ -11,10 +11,11 @@ import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { isLoading, LoginUser } from './redux/reducers/userSlice';
+import { setLoading, LoginUser } from './redux/reducers/userSlice';
 import { fetchProducts } from './redux/reducers/productsSlice';
 
 import { auth } from '../firebase/firebaseConfig';
+import { onAuthStateChanged } from "firebase/auth";
 
 
 const theme = createTheme({
@@ -43,21 +44,28 @@ function App() {
   const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 
-  console.log(user)
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch])
   
+console.log(user);
+
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
-      if(authUser) {
-        dispatch(LoginUser({
-          uid: authUser.uid,
-          username: authUser.displayName,
-          email: authUser.email,
-        })
-      )}
-    })
+    onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        dispatch(
+          LoginUser({
+            uid: authUser.uid,
+            username: authUser.displayName,
+            email: authUser.email,
+          })
+        );
+        dispatch(setLoading(false))
+      }
+      else {
+        console.log('The user is not logged in')
+      }
+    });
   }, [dispatch])
 
   return (

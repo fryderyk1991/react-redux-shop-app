@@ -5,6 +5,9 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { authFields } from '../helpers/formFields';
 import { validation, validateInput } from '../helpers/formValidation';
 
+import { auth } from '../../firebase/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 import { useState } from 'react';
 
 const Login = () => {
@@ -13,10 +16,20 @@ const Login = () => {
 
   const [values, setValues] = useState({
     email: '',
-    username: '',
     password: '',
   });
   const [errors, setErrors] = useState({});
+
+  const handleSignIn = async () => {
+    const { email, password } = values;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch(error) {
+      const errorMessage = error.message;
+      console.log(errorMessage)
+    }
+    
+  } 
   
   const handleFieldChange = e => {
     const { name, value } = e.target;
@@ -37,11 +50,10 @@ const Login = () => {
     const errors = validation(values, loginFields);
     setErrors(errors)
     if(Object.keys(errors).length === 0) {
-      /// zrob cos jesli formularz  bedzie ok 
+      handleSignIn()
         setValues(prevValues => ({
          ...prevValues,
          email: '',
-         username: '',
          password: '',
        }))
     }
