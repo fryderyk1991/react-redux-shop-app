@@ -10,6 +10,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import { useState } from 'react';
 
+import { showLoginError } from '../helpers/showLoginError';
+
 const Login = () => {
   const logInputs = [ ...authFields ];
   const loginFields = [logInputs[0], logInputs[2]];
@@ -19,14 +21,20 @@ const Login = () => {
     password: '',
   });
   const [errors, setErrors] = useState({});
+  const [authErr, setAuthErr] = useState('')
 
   const handleSignIn = async () => {
     const { email, password } = values;
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch(error) {
-      const errorMessage = error.message;
-      console.log(errorMessage)
+      // const errorMessage = error.message;
+      // alert(errorMessage)
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
+      const showAuthErr = showLoginError(error);
+      setAuthErr(showAuthErr);
+      console.log(showAuthErr)
     }
     
   } 

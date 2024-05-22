@@ -6,6 +6,7 @@ export const validation = (values, fields) => {
           const value = values[key];
           if(field) {
             const error = validateInput(key, fields, value);
+           
              if(error) {
                 errors[key] = error;
              }
@@ -30,7 +31,7 @@ export const validation = (values, fields) => {
          return `Invalid ${name} format!`;
       }
       if(field.name === 'password' && value.length < 6) {
-         return `Password must be at least 6 characters`
+         return `Password must be at least 6 characters!`
       }
     }
     return '';

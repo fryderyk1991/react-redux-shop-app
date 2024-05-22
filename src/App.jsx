@@ -18,6 +18,8 @@ import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 
 
+  
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -41,6 +43,9 @@ const theme = createTheme({
 })
 
 function App() {
+
+
+  
   const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 

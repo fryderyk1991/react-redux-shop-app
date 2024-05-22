@@ -4,36 +4,60 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 import { authFields } from '../helpers/formFields';
 import { validation, validateInput } from '../helpers/formValidation';
-
+import { showLoginError } from '../helpers/showLoginError';
 import { useState } from 'react';
 
 import {
   createUserWithEmailAndPassword,
-  // signInWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged
 } from "firebase/auth";
 
 import { auth } from "../../firebase/firebaseConfig";
 
+import { LoginUser, setLoading } from '../redux/reducers/userSlice';
+
+import { useDispatch } from 'react-redux';
+
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const [values, setValues] = useState({
     email: "",
     username: "",
     password: "",
   });
   const [errors, setErrors] = useState({});
-  
+  const [authError, setAuthError] = useState('')  
 
   const handleSignup = async () => {
     const { email, username, password } = values;
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      await updateProfile(user, { displayName: username  })
+      await updateProfile(user, { displayName: username });
+
+      onAuthStateChanged(auth, (authUser) => {
+        if (authUser) {
+          dispatch(
+            LoginUser({
+              uid: authUser.uid,
+              username: authUser.displayName,
+              email: authUser.email,
+            })
+          );
+          dispatch(setLoading(false));
+        } else {
+          console.log('The user is not logged in');
+        }
+      });
     }
     catch(error) {
       const errorMessage = error.message;
       console.log(errorMessage)
+       const authErr =  showLoginError(error);
+       setAuthError(authErr);
+       console.log(authErr)
     }
   };
 
@@ -111,6 +135,7 @@ const Signup = () => {
         onSubmit={handleSubmit}
       >
         {inputs}
+      
         <Button
           type="submit"
           variant="contained"
