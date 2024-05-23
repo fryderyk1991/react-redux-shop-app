@@ -1,6 +1,6 @@
 import { Box, FormControl, InputLabel, FormHelperText, OutlinedInput, Button, Typography, Link} from '@mui/material';
 
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
 import { authFields } from '../helpers/formFields';
 import { validation, validateInput } from '../helpers/formValidation';
@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     email: "",
@@ -46,6 +47,7 @@ const Signup = () => {
               email: authUser.email,
             })
           );
+          navigate('/')
           dispatch(setLoading(false));
         } else {
           console.log('The user is not logged in');

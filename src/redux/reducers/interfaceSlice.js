@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
+  isFavorite: false,
 };
 
 export const interfaceSlice = createSlice({
@@ -14,10 +15,13 @@ export const interfaceSlice = createSlice({
     setClose: (state) => {
       state.isOpen = false;
     },
+    toggleFavorite: (state) => {
+      state.isFavorite = !state.isFavorite;
+    }
   },  
 });
 
-export const { setOpen, setClose } = interfaceSlice.actions;
+export const { setOpen, setClose, toggleFavorite } = interfaceSlice.actions;
 
 
 export default interfaceSlice.reducer

@@ -1,6 +1,6 @@
 import { Box, FormControl, InputLabel, OutlinedInput, FormHelperText, Button, Typography, Link} from '@mui/material'
 
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
 import { authFields } from '../helpers/formFields';
 import { validation, validateInput } from '../helpers/formValidation';
@@ -15,6 +15,7 @@ import { showLoginError } from '../helpers/showLoginError';
 const Login = () => {
   const logInputs = [ ...authFields ];
   const loginFields = [logInputs[0], logInputs[2]];
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     email: '',
@@ -27,6 +28,7 @@ const Login = () => {
     const { email, password } = values;
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      navigate('/')
     } catch(error) {
       // const errorMessage = error.message;
       // alert(errorMessage)

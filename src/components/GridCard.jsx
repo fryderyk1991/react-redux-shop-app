@@ -10,16 +10,18 @@ import {
 } from "@mui/material";
 
 
-
 import CardButtons from './CardButtons';
 import { useNavigate } from 'react-router-dom';
 
 const GridCard = ({ src, title, price, id }) => {
   const navigate = useNavigate()
 
+
+
   const handleClick = (e) => {
     navigate(`product/${e.target.dataset.id}`)
   };
+
 
   return (
       <Card sx={{ maxWidth: 350, height: '100%', display: 'flex', flexDirection: 'column'}} >
@@ -33,7 +35,7 @@ const GridCard = ({ src, title, price, id }) => {
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between'}}>
-          <CardButtons properIcons={'favorite'}/>
+          <CardButtons properIcons={'favorite'} />
         </CardActions>
       </Card>
   );
