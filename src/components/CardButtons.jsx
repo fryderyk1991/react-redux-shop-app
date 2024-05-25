@@ -5,14 +5,16 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavorite } from '../redux/reducers/favoriteSlice';
 
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
-const CardButtons = ( { properIcons } ) => {
+const CardButtons = ( { properIcons, id } ) => {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
-  const [isFavorite, setIsFavorite] = useState(false)
+  const favoritesStatus = useSelector(state => state.favorites.favoritesStatus);
+  const isFavorite = favoritesStatus[id] || false;
   const navigate = useNavigate()
 
   const handleFavorite = () => {
@@ -20,7 +22,7 @@ const CardButtons = ( { properIcons } ) => {
       navigate('/auth/login')
     }
     else {
-      setIsFavorite(!isFavorite)
+      dispatch(toggleFavorite(id))
     }
   }
   const handleCart = () => {
@@ -57,6 +59,7 @@ const CardButtons = ( { properIcons } ) => {
 
 CardButtons.propTypes = {
   properIcons: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default CardButtons;

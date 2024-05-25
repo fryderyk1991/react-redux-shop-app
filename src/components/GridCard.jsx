@@ -35,7 +35,7 @@ const GridCard = ({ src, title, price, id }) => {
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between'}}>
-          <CardButtons properIcons={'favorite'} />
+          <CardButtons properIcons={'favorite'} id={id}/>
         </CardActions>
       </Card>
   );

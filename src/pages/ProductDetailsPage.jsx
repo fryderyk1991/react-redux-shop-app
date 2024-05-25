@@ -79,7 +79,7 @@ const ProductDetailsPage = () => {
           >
             ${product.price},00
           </Typography>
-          <CardButtons properIcons={"both"}/>
+          <CardButtons properIcons={"both"} id={+id}/>
         </>
     </Box>
     </>
