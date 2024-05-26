@@ -17,6 +17,7 @@ import { clearFavorites } from './redux/reducers/favoriteSlice';
 
 import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
+import { clearCart } from './redux/reducers/cartSlice';
 
 
   
@@ -67,6 +68,7 @@ function App() {
       else {
         console.log('The user is not logged in')
         dispatch(clearFavorites())
+        dispatch(clearCart)
       }
     });
   }, [dispatch])

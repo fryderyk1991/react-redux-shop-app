@@ -9,6 +9,7 @@ import store from './redux/store';
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
 import FavoritePage from './pages/FavoritePage';
+import CartPage from './pages/CartPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import AuthenticationPage from './pages/AuthenticationPage';
 import Login from './components/Login';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         {
           path: "favorite",
           element: <FavoritePage />,
+        },
+        {
+          path: "cart",
+          element: <CartPage />,
         },
         {
           path: "product/:id",

@@ -7,6 +7,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../redux/reducers/favoriteSlice';
+import { addProduct } from '../redux/reducers/cartSlice';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +31,7 @@ const CardButtons = ( { properIcons, id } ) => {
       navigate('/auth/login')
     }
     else {
-      console.log('user może dodać do koszyka')
+      dispatch(addProduct(id))
     }
   }
   return ( 
