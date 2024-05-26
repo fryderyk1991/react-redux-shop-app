@@ -1,13 +1,12 @@
-import { Grid } from "@mui/material";
+import PropTypes from 'prop-types'
 
-import { useSelector } from "react-redux";
+import { Grid } from "@mui/material";
 import GridCard from "./GridCard";
 
 
 
-const GridContainer = () => {    
-  const gridItems = useSelector(state => state.products.productsData); 
 
+const GridContainer = ( { gridItems }) => {    
   return (
     <Grid container spacing={1} sx={{ my: 4 }}>
         {gridItems.map((item) => (
@@ -19,4 +18,9 @@ const GridContainer = () => {
   );
 };
 
+GridContainer.propTypes = {
+  gridItems: PropTypes.array.isRequired,
+};
+
 export default GridContainer;
+ 

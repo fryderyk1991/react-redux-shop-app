@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setLoading, LoginUser } from './redux/reducers/userSlice';
 import { fetchProducts } from './redux/reducers/productsSlice';
+import { clearFavorites } from './redux/reducers/favoriteSlice';
 
 import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
@@ -43,9 +44,6 @@ const theme = createTheme({
 })
 
 function App() {
-
-
-  
   const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 
@@ -53,7 +51,6 @@ function App() {
     dispatch(fetchProducts());
   }, [dispatch])
   
-console.log(user);
 
   useEffect(() => {
     onAuthStateChanged(auth, (authUser) => {
@@ -69,6 +66,7 @@ console.log(user);
       }
       else {
         console.log('The user is not logged in')
+        dispatch(clearFavorites())
       }
     });
   }, [dispatch])

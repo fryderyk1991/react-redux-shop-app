@@ -22,9 +22,13 @@ const favoriteSlice = createSlice({
         state.favoritesStatus[id] = true;
       }
     },
+    clearFavorites(state) {
+      state.favoritesProducts = [];
+      state.favoritesStatus = {};
+    },
   },
 });
 
 
-export const { toggleFavorite } = favoriteSlice.actions;
+export const { toggleFavorite, clearFavorites } = favoriteSlice.actions;
 export default favoriteSlice.reducer
