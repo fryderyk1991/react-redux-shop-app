@@ -68,7 +68,7 @@ function App() {
       else {
         console.log('The user is not logged in')
         dispatch(clearFavorites())
-        dispatch(clearCart)
+        dispatch(clearCart())
       }
     });
   }, [dispatch])

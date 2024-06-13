@@ -9,8 +9,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import { useSelector, useDispatch } from 'react-redux';
 import { setClose } from '../redux/reducers/interfaceSlice';
 import { favoritesAmount } from '../redux/reducers/favoriteSlice';
+import { cartAmount } from '../redux/reducers/cartSlice';
 
 import { routes } from "../routes";
+
 import { Link as ReactRouterLink } from "react-router-dom";
 
 
@@ -18,11 +20,15 @@ const MobileNav = () => {
   // const user = useSelector(state => state.user.user)
   const isOpen = useSelector((state) => state.interface.isOpen);
   const favAmount = useSelector(favoritesAmount)
+  const cAmount = useSelector(cartAmount)
   const dispatch = useDispatch();
 
   const closeDrawer = () => {
     dispatch(setClose());
   };
+
+
+
 
   const DrawerList = (
     <>
@@ -43,12 +49,12 @@ const MobileNav = () => {
               >
                  <ListItemIcon sx={{ color: 'primary.main', minWidth: '40px', position: 'relative'}}>
                 <route.icon />
-                {route.name === 'Favorite' && (
-                  <Box sx={{position: 'absolute', left: '0',top: '60%', color: 'white', width: '15px', height: '15px', backgroundColor: 'red', borderRadius: '50%', textAlign: 'center', lineHeight: '15px', fontSize: '12px'}}>{favAmount}</Box>
+                {(route.name === 'Favorite' || route.name === 'Cart') && (
+                  <Box sx={{position: 'absolute', left: '0',top: '60%', color: 'white', width: '15px', height: '15px', backgroundColor: 'red', borderRadius: '50%', textAlign: 'center', lineHeight: '15px', fontSize: '12px'}}>{route.name === 'Favorite' ? favAmount : cAmount}</Box>
                 )}
+             
               </ListItemIcon>
                 {route.name}
-              
               </ListItemButton>
             </ListItem>
           ))}
