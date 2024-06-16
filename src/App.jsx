@@ -53,7 +53,7 @@ function App() {
   
 
   useEffect(() => {
-    onAuthStateChanged(auth, (authUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
         dispatch(
           LoginUser({
@@ -70,6 +70,7 @@ function App() {
         dispatch(clearCart())
       }
     });
+    return () => unsubscribe()
   }, [dispatch])
 
   return (
