@@ -45,7 +45,6 @@ const theme = createTheme({
 })
 
 function App() {
-  const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,7 +58,7 @@ function App() {
         dispatch(
           LoginUser({
             uid: authUser.uid,
-            username: authUser.displayName,
+            name: authUser.displayName,
             email: authUser.email,
           })
         );

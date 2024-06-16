@@ -17,7 +17,7 @@ const Header = () => {
   
   const handleSignout = async () => {
     try {
-       await signOut(auth)
+      await signOut(auth)
       dispatch(LogoutUser())
     } catch(error) {
       console.log(error)
@@ -33,7 +33,7 @@ const Header = () => {
       {/* tu stworzyc konto */}
         {user && (
           <>
-          <h2>{user.username}</h2>
+          <strong>{user.name}</strong>
           <button onClick={handleSignout}>Logout</button>
           </>
         )}
