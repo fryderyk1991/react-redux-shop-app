@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ref, get, set, remove } from "firebase/database";
+import { ref, get, set } from "firebase/database";
 import { database } from "../../../firebase/firebaseConfig";
 
 const initialState = {
@@ -35,16 +35,6 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProduct(state, action) {
-      const id = action.payload;
-      state.cartProducts = [...state.cartProducts, id];
-    },
-    deleteProduct(state, action) {
-      const id = action.payload;
-      state.cartProducts = state.cartProducts.filter(
-        (productId) => productId !== id
-      );
-    },
     clearCart(state) {
       state.cartProducts = [];
     },
@@ -67,7 +57,7 @@ const cartSlice = createSlice({
   }
 });
 
-export const { addProduct, deleteProduct, clearCart } = cartSlice.actions;
+export const { clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
 export const cartAmount = (state) => state.cart.cartProducts.length;

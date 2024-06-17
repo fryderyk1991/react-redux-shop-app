@@ -7,7 +7,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../redux/reducers/favoriteSlice';
-import { addProduct, saveCart } from '../redux/reducers/cartSlice';
+import { saveCart } from '../redux/reducers/cartSlice';
 
 import { useNavigate } from 'react-router-dom';
 
