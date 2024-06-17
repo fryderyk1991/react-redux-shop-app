@@ -17,7 +17,7 @@ import { clearFavorites } from './redux/reducers/favoriteSlice';
 
 import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
-import { clearCart } from './redux/reducers/cartSlice';
+import { clearCart, fetchCart } from './redux/reducers/cartSlice';
 
 
   
@@ -62,6 +62,7 @@ function App() {
             email: authUser.email,
           })
         );
+        dispatch(fetchCart(authUser.uid))
         dispatch(setLoading(false))
       }
       else {

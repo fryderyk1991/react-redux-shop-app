@@ -10,7 +10,8 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import Select from '@mui/material/Select';
 import IconButton from '@mui/material/IconButton';
 
-import { deleteProduct } from "../redux/reducers/cartSlice";
+// import { deleteProduct } from "../redux/reducers/cartSlice";
+import { deleteProductFromCart } from "../redux/reducers/cartSlice";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]); 
@@ -18,6 +19,7 @@ const CartPage = () => {
   const [totalCartPrice, setTotalCartPrice] = useState(0)
   const products = useSelector(state => state.products.productsData);
   const cartIdArray = useSelector(state => state.cart.cartProducts);
+  const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const CartPage = () => {
           <MenuItem value={10}>10</MenuItem>
         </Select>
       </FormControl>
-      <IconButton sx={{ color: 'primary.main' }} onClick={() => dispatch(deleteProduct(item.id))} >
+      <IconButton sx={{ color: 'primary.main' }} onClick={() => dispatch(deleteProductFromCart({ userId: user.uid, productId: item.id }))} >
       <DeleteForeverOutlinedIcon />
       </IconButton>
       

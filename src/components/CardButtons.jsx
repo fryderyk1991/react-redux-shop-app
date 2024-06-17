@@ -7,7 +7,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../redux/reducers/favoriteSlice';
-import { addProduct } from '../redux/reducers/cartSlice';
+import { addProduct, saveCart } from '../redux/reducers/cartSlice';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ const CardButtons = ( { properIcons, id } ) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
   const favoritesStatus = useSelector(state => state.favorites.favoritesStatus);
+  const cartProducts = useSelector(state => state.cart.cartProducts)
   const isFavorite = favoritesStatus[id] || false;
   const navigate = useNavigate()
 
@@ -31,7 +32,8 @@ const CardButtons = ( { properIcons, id } ) => {
       navigate('/auth/login')
     }
     else {
-      dispatch(addProduct(id))
+      // dispatch(addProduct(id))
+      dispatch(saveCart({ userId: user.uid,  cartProducts: [...cartProducts, id]}));
     }
   }
   return ( 
