@@ -28,7 +28,6 @@ export const saveCart = createAsyncThunk("cart/saveCart", async ({ userId, cartP
     return productId;
   }
   return null;
-    
   });
 
 const cartSlice = createSlice({

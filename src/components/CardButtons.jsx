@@ -9,15 +9,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../redux/reducers/favoriteSlice';
 import { saveCart } from '../redux/reducers/cartSlice';
 
+
 import { useNavigate } from 'react-router-dom';
 
 const CardButtons = ( { properIcons, id } ) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
-  const favoritesStatus = useSelector(state => state.favorites.favoritesStatus);
+  const favoritesProducts = useSelector(state => state.favorites.favoritesProducts)
   const cartProducts = useSelector(state => state.cart.cartProducts)
-  const isFavorite = favoritesStatus[id] || false;
+  const isFavorite = favoritesProducts.some(product => product.id === id && product.favoritesStatus);
   const navigate = useNavigate()
+
 
   const handleFavorite = () => {
     if(!user) {
@@ -25,6 +27,7 @@ const CardButtons = ( { properIcons, id } ) => {
     }
     else {
       dispatch(toggleFavorite(id))
+      // dispatch(saveFavorites({userId: user.uid, favoritesProducts: [ ...favoritesProducts, id]}))
     }
   }
   const handleCart = () => {
@@ -32,8 +35,7 @@ const CardButtons = ( { properIcons, id } ) => {
       navigate('/auth/login')
     }
     else {
-      // dispatch(addProduct(id))
-      dispatch(saveCart({ userId: user.uid,  cartProducts: [...cartProducts, id]}));
+      dispatch(saveCart({ userId: user.uid,  cartProducts: [ ...cartProducts, id]}));
     }
   }
   return ( 
