@@ -10,7 +10,10 @@ import GridContainer from '../components/GridContainer'
 const FavoritePage = () => {
   const [favorites, setFavorites] = useState([]);
   const products = useSelector(state => state.products.productsData);
+  // const favoritesProducts = useSelector(state => state.favorites.favoritesProducts);
   const favoritesIdArray = useSelector(state => state.favorites.favoritesProducts)
+
+ 
   
   useEffect(() => {
     const filterFavorites = matchProductsWithId(products, favoritesIdArray);

@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleFavorite } from '../redux/reducers/favoriteSlice';
+import { handleFavorites } from '../redux/reducers/favoriteSlice';
 import { saveCart } from '../redux/reducers/cartSlice';
 
 
@@ -16,8 +16,9 @@ const CardButtons = ( { properIcons, id } ) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
   const favoritesProducts = useSelector(state => state.favorites.favoritesProducts)
-  const cartProducts = useSelector(state => state.cart.cartProducts)
-  const isFavorite = favoritesProducts.some(product => product.id === id && product.favoritesStatus);
+  const cartProducts = useSelector(state => state.cart.cartProducts);
+  const favoritesStatus = useSelector(state => state.favorites.favoritesStatus);
+  const isFavorite = favoritesStatus[id] || false;
   const navigate = useNavigate()
 
 
@@ -26,8 +27,20 @@ const CardButtons = ( { properIcons, id } ) => {
       navigate('/auth/login')
     }
     else {
-      dispatch(toggleFavorite(id))
-      // dispatch(saveFavorites({userId: user.uid, favoritesProducts: [ ...favoritesProducts, id]}))
+    const updatedFavoritesProducts = favoritesProducts.includes(id) ? favoritesProducts.filter(itemId => itemId !== id): [...favoritesProducts, id];
+
+    const updatedFavoritesStatus = { ...favoritesStatus };
+
+    if (updatedFavoritesStatus[id]) {
+      delete updatedFavoritesStatus[id];
+    } else {
+      updatedFavoritesStatus[id] = true;
+    }
+  dispatch(handleFavorites({
+    userId: user.uid,
+    favoritesProducts: updatedFavoritesProducts,
+    favoritesStatus: updatedFavoritesStatus
+  }));
     }
   }
   const handleCart = () => {

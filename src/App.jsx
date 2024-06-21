@@ -18,7 +18,7 @@ import { clearFavorites } from './redux/reducers/favoriteSlice';
 import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 import { clearCart, fetchCart } from './redux/reducers/cartSlice';
-// import { fetchFavorites } from './redux/reducers/favoriteSlice';
+import { fetchFavorites } from './redux/reducers/favoriteSlice';
 
 
   
@@ -64,7 +64,7 @@ function App() {
           })
         );
         dispatch(fetchCart(authUser.uid))
-        // dispatch(fetchFavorites(authUser.uid))
+        dispatch(fetchFavorites(authUser.uid))
         dispatch(setLoading(false))
       }
       else {
