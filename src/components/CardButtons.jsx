@@ -46,9 +46,9 @@ const CardButtons = ( { properIcons, id } ) => {
   const handleCart = () => {
     if (!user) {
       navigate('/auth/login')
-    }
-    else {
-      dispatch(saveCart({ userId: user.uid,  cartProducts: [ ...cartProducts, id]}));
+    } 
+    else if(user && !cartProducts.includes(id)) {
+        dispatch(saveCart({ userId: user.uid,  cartProducts: [ ...cartProducts, id]}));
     }
   }
   return ( 
