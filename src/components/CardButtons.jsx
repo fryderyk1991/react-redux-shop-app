@@ -9,9 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleFavorites } from '../redux/reducers/favoriteSlice';
 import { saveCart } from '../redux/reducers/cartSlice';
 
-
-import { useNavigate } from 'react-router-dom';
-
 const CardButtons = ( { properIcons, id } ) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
@@ -19,12 +16,11 @@ const CardButtons = ( { properIcons, id } ) => {
   const cartProducts = useSelector(state => state.cart.cartProducts);
   const favoritesStatus = useSelector(state => state.favorites.favoritesStatus);
   const isFavorite = favoritesStatus[id] || false;
-  const navigate = useNavigate()
 
 
-  const handleFavorite = () => {
+  const handleFavorite = (id) => {
     if(!user) {
-      navigate('/auth/login')
+      console.log(`User is not logged in, setting tooltip open for id=${id}`);
     }
     else {
     const updatedFavoritesProducts = favoritesProducts.includes(id) ? favoritesProducts.filter(itemId => itemId !== id): [...favoritesProducts, id];
@@ -45,7 +41,7 @@ const CardButtons = ( { properIcons, id } ) => {
   }
   const handleCart = () => {
     if (!user) {
-      navigate('/auth/login')
+     console.log('zaloguj sie zeby dodac do koszyka')
     } 
     else if(user && !cartProducts.includes(id)) {
         dispatch(saveCart({ userId: user.uid,  cartProducts: [ ...cartProducts, id]}));
@@ -54,9 +50,11 @@ const CardButtons = ( { properIcons, id } ) => {
   return ( 
    <>
    {properIcons === 'favorite' && (
-        <IconButton sx={{ color: 'primary.main'}} onClick={handleFavorite} >
-          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </IconButton>
+         <>
+         <IconButton sx={{ color: 'primary.main'}} onClick={() => handleFavorite(id)} >
+           {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+         </IconButton>
+         </>
       )}
       {properIcons === 'both' && (
         <Box sx={{display: 'flex', justifyContent: 'space-between', mt: 3}}>
@@ -64,7 +62,7 @@ const CardButtons = ( { properIcons, id } ) => {
             <ShoppingBagOutlinedIcon sx={{ mr:  2 }} />
             <Typography>Add to Cart</Typography> 
             </Button>
-          <Button variant='outlined' sx={{ flex: 0, p: 1.5, ml: 1}} onClick={handleFavorite}>
+          <Button variant='outlined' sx={{ flex: 0, p: 1.5, ml: 1}} onClick={() => handleFavorite(id)}>
           {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </Button>
         </Box>
