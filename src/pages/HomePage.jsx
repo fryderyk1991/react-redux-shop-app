@@ -9,7 +9,6 @@ import { setLoading, LoginUser } from "../redux/reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 
 
-import TransitionsModal from "../components/Modal";
 
 const HomePage = () => {
    const gridItems = useSelector(state => state.products.productsData); 
@@ -38,7 +37,6 @@ const HomePage = () => {
   }
   return (
       <Container>
-        <TransitionsModal />
          <button onClick={handleGoogle}>Sign in with Google</button>
         <GridContainer gridItems={gridItems} />
       </Container>

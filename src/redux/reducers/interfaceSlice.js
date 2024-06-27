@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
-  toolTipOpen: false,
-  toolTipId: null,
+  modalIsOpen: false,
+  modalMessage: null,
 };
 
 export const interfaceSlice = createSlice({
@@ -16,10 +16,18 @@ export const interfaceSlice = createSlice({
     setClose: (state) => {
       state.isOpen = false;
     },
+    setModalOpen: (state, action) => {
+      state.modalIsOpen = true;
+      state.modalMessage = action.payload
+    },
+    setModalClose: (state) => {
+      state.modalIsOpen = false;
+      state.modalMessage = null
+    }
   },  
 });
 
-export const { setOpen, setClose, setToolTipOpen, setToolTipClose } = interfaceSlice.actions;
+export const { setOpen, setClose, setModalOpen, setModalClose} = interfaceSlice.actions;
 
 
 export default interfaceSlice.reducer

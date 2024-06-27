@@ -8,6 +8,9 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useSelector, useDispatch } from 'react-redux';
 import { handleFavorites } from '../redux/reducers/favoriteSlice';
 import { saveCart } from '../redux/reducers/cartSlice';
+import { setModalOpen } from '../redux/reducers/interfaceSlice';
+
+import TransitionsModal from './Modal';
 
 const CardButtons = ( { properIcons, id } ) => {
   const dispatch = useDispatch();
@@ -20,7 +23,7 @@ const CardButtons = ( { properIcons, id } ) => {
 
   const handleFavorite = (id) => {
     if(!user) {
-      console.log(`User is not logged in, setting tooltip open for id=${id}`);
+      dispatch(setModalOpen('Zaloguj się, aby dodać do ulubionych'))
     }
     else {
     const updatedFavoritesProducts = favoritesProducts.includes(id) ? favoritesProducts.filter(itemId => itemId !== id): [...favoritesProducts, id];
@@ -41,7 +44,7 @@ const CardButtons = ( { properIcons, id } ) => {
   }
   const handleCart = () => {
     if (!user) {
-     console.log('zaloguj sie zeby dodac do koszyka')
+      dispatch(setModalOpen('Zaloguj się, aby dodać do koszyka'))
     } 
     else if(user && !cartProducts.includes(id)) {
         dispatch(saveCart({ userId: user.uid,  cartProducts: [ ...cartProducts, id]}));
@@ -51,13 +54,23 @@ const CardButtons = ( { properIcons, id } ) => {
    <>
    {properIcons === 'favorite' && (
          <>
-         <IconButton sx={{ color: 'primary.main'}} onClick={() => handleFavorite(id)} >
-           {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+         {user ? (
+             <IconButton sx={{ color: 'primary.main'}} onClick={() => handleFavorite(id)} >
+             {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+           </IconButton>
+         ) : (
+          <TransitionsModal>
+              <IconButton sx={{ color: 'primary.main'}} onClick={() => handleFavorite(id)} >
+           <FavoriteBorderIcon />
          </IconButton>
+          </TransitionsModal>
+         )}
          </>
       )}
       {properIcons === 'both' && (
-        <Box sx={{display: 'flex', justifyContent: 'space-between', mt: 3}}>
+        <>
+        {user ? (
+            <Box sx={{display: 'flex', justifyContent: 'space-between', mt: 3}}>
             <Button variant='outlined' sx={{ flex: 3, p: 1.5}} onClick={handleCart}> 
             <ShoppingBagOutlinedIcon sx={{ mr:  2 }} />
             <Typography>Add to Cart</Typography> 
@@ -66,9 +79,26 @@ const CardButtons = ( { properIcons, id } ) => {
           {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </Button>
         </Box>
+        ) : (
+          <Box sx={{display: 'flex', justifyContent: 'space-between', mt: 3}}>
+            <TransitionsModal>
+            <Button variant='outlined' sx={{ flex: 3, p: 1.5}} onClick={handleCart}> 
+          <ShoppingBagOutlinedIcon sx={{ mr:  2 }} />
+          <Typography>Add to Cart</Typography> 
+          </Button>
+            </TransitionsModal>
+         <TransitionsModal>
+         <Button variant='outlined' sx={{ flex: 0, p: 1.5, ml: 1}} onClick={() => handleFavorite(id)}>
+        <FavoriteBorderIcon />
+        </Button>
+         </TransitionsModal>
+      </Box>
+        )}
+       
+        </>
+        
       )}
       </> 
-
   );
 };
 
