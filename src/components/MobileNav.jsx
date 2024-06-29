@@ -48,7 +48,7 @@ const MobileNav = () => {
                 onClick={closeDrawer}
               >
                  <ListItemIcon sx={{ color: 'primary.main', minWidth: '40px', position: 'relative'}}>
-                <route.icon />
+                <route.icon sx={{ fontSize: 28}}/>
                 {(route.name === 'Favorite' || route.name === 'Cart') && (
                   <Box sx={{position: 'absolute', left: '0',top: '60%', color: 'white', width: '15px', height: '15px', backgroundColor: 'red', borderRadius: '50%', textAlign: 'center', lineHeight: '15px', fontSize: '12px'}}>{route.name === 'Favorite' ? favAmount : cAmount}</Box>
                 )}
