@@ -37,7 +37,7 @@ const HomePage = () => {
   }
   return (
       <Container>
-         <button onClick={handleGoogle}>Sign in with Google</button>
+         {/* <button onClick={handleGoogle}>Sign in with Google</button> */}
         <GridContainer gridItems={gridItems} />
       </Container>
   );

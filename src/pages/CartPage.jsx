@@ -10,8 +10,8 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import Select from '@mui/material/Select';
 import IconButton from '@mui/material/IconButton';
 
-// import { deleteProduct } from "../redux/reducers/cartSlice";
 import { deleteProductFromCart } from "../redux/reducers/cartSlice";
+import MessageComponent from '../components/MessageComponent'
 
 const CartPage = () => {
   const [cart, setCart] = useState([]); 
@@ -21,6 +21,8 @@ const CartPage = () => {
   const cartIdArray = useSelector(state => state.cart.cartProducts);
   const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     const filterCart = matchProductsWithId(products, cartIdArray);
@@ -53,36 +55,41 @@ const CartPage = () => {
 
   return (
     <Container>
-      {cart.map((item) => (
-        <div key={item.id}>
-          <p>{item.title}</p>
-          <p>${quantinities[item.id]?.totalPrice || item.price},00</p>
-          <FormControl sx={{width: '50%'}}>
-        <InputLabel>Quantinity</InputLabel>
-        <Select 
-          value={quantinities[item.id]?.quantinity || 1}
-          label="Quantinity"
-          onChange={(e) => handleQuantinityChange(item.id, e.target.value, item.price)}
-        >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={6}>6</MenuItem>
-          <MenuItem value={7}>7</MenuItem>
-          <MenuItem value={8}>8</MenuItem>
-          <MenuItem value={9}>9</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
-        </Select>
-      </FormControl>
-      <IconButton sx={{ color: 'primary.main' }} onClick={() => dispatch(deleteProductFromCart({ userId: user.uid, productId: item.id }))} >
-      <DeleteForeverOutlinedIcon />
-      </IconButton>
-      
-        </div>
-      ))}
-      <h2>Total price: ${totalCartPrice},00</h2>
+      {cart.length === 0 ? (
+        <MessageComponent text={'Your cart is empty'} />
+      ) : (
+        <>
+        {cart.map((item) => (
+          <div key={item.id}>
+            <p>{item.title}</p>
+            <p>${quantinities[item.id]?.totalPrice || item.price},00</p>
+            <FormControl sx={{width: '50%'}}>
+          <InputLabel>Quantinity</InputLabel>
+          <Select 
+            value={quantinities[item.id]?.quantinity || 1}
+            label="Quantinity"
+            onChange={(e) => handleQuantinityChange(item.id, e.target.value, item.price)}
+          >
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
+            <MenuItem value={7}>7</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+          </Select>
+        </FormControl>
+        <IconButton sx={{ color: 'primary.main' }} onClick={() => dispatch(deleteProductFromCart({ userId: user.uid, productId: item.id }))} >
+        <DeleteForeverOutlinedIcon />
+        </IconButton>
+          </div>
+        ))}
+        <h2>Total price: ${totalCartPrice},00</h2>
+        </>
+      )}
     </Container>
   )
 }

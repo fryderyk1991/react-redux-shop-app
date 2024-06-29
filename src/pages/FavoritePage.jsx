@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 
 import { Container } from "@mui/material";
 
-import GridContainer from '../components/GridContainer'
+import GridContainer from '../components/GridContainer';
+import MessageComponent from '../components/MessageComponent'
 
 const FavoritePage = () => {
   const [favorites, setFavorites] = useState([]);
   const products = useSelector(state => state.products.productsData);
-  // const favoritesProducts = useSelector(state => state.favorites.favoritesProducts);
   const favoritesIdArray = useSelector(state => state.favorites.favoritesProducts)
 
  
@@ -22,7 +22,12 @@ const FavoritePage = () => {
   
   return (
     <Container >
-         <GridContainer gridItems={favorites} />
+     {favorites ? (
+      <MessageComponent text={"You haven't liked any products yet"}/>
+     ) : (
+      <GridContainer gridItems={favorites} />
+     )}
+        
     </Container>
  
   )
