@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider, Box } from '@mui/material';
 
 import { useEffect } from 'react';
 
@@ -79,9 +79,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <CssBaseline /> 
+    <Box sx={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
     <Header/>
     <MobileNav />
     <Outlet />
+    </Box>
     <Footer />
     </ThemeProvider>
   );

@@ -22,7 +22,7 @@ export const interfaceSlice = createSlice({
     },
     setModalClose: (state) => {
       state.modalIsOpen = false;
-      state.modalMessage = null
+      state.modalMessage = null;
     }
   },  
 });
