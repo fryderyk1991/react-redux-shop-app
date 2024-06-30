@@ -11,7 +11,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 
 export const routes = [
-  { name: "Login", path: "auth", element: AuthenticationPage, icon: PersonIcon },
+  { name: "Sign In", path: "auth", element: AuthenticationPage, icon: PersonIcon },
   { name: "Home", path: "", element: HomePage, icon: HomeIcon },
   { name: "Contact", path: "contact", element: ContactPage, icon: EmailIcon },
   { name: "Favorite", path: "favorite", element: FavoritePage, icon: FavoriteIcon},

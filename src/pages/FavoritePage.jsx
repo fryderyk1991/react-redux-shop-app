@@ -22,7 +22,7 @@ const FavoritePage = () => {
   
   return (
     <Container >
-     {favorites ? (
+     {favorites.length === 0 ? (
       <MessageComponent text={"You haven't liked any products yet"}/>
      ) : (
       <GridContainer gridItems={favorites} />

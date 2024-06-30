@@ -6,12 +6,17 @@ import { auth } from '../../firebase/firebaseConfig'
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, LoginUser } from "../redux/reducers/userSlice";
 
+
 import { useNavigate } from "react-router-dom";
 
+import MessageComponent from '../components/MessageComponent';
+import LoadCircle from '../components/LoadCircle';
 
 
 const HomePage = () => {
-   const gridItems = useSelector(state => state.products.productsData); 
+  const { productsData, loading } = useSelector(state => state.products)
+  console.log(loading)
+   
    const dispatch = useDispatch();
    const navigate = useNavigate()
 
@@ -36,10 +41,21 @@ const HomePage = () => {
 
   }
   return (
-      <Container>
-         {/* <button onClick={handleGoogle}>Sign in with Google</button> */}
-        <GridContainer gridItems={gridItems} />
-      </Container>
+    <Container>
+            {loading && productsData.length === 0 ? (
+              <LoadCircle />
+            ) : (
+              <>
+              <button onClick={handleGoogle}>Sign in with Google</button>
+              <GridContainer gridItems={productsData} />
+              </>
+            )}
+            <>
+             {!loading || productsData.length === 0 && (
+                <MessageComponent text={"Sorry the products are not available at this moment"} />
+              )} 
+              </>
+  </Container>
   );
 };
 
