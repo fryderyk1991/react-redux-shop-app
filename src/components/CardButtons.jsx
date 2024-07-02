@@ -10,7 +10,6 @@ import { handleFavorites } from '../redux/reducers/favoriteSlice';
 import { saveCart } from '../redux/reducers/cartSlice';
 import { setModalOpen } from '../redux/reducers/interfaceSlice';
 
-import TransitionsModal from './Modal';
 
 const CardButtons = ( { properIcons, id } ) => {
   const dispatch = useDispatch();

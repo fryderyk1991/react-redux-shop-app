@@ -15,8 +15,6 @@ import LoadCircle from '../components/LoadCircle';
 
 const HomePage = () => {
   const { productsData, loading } = useSelector(state => state.products)
-  console.log(loading)
-   
    const dispatch = useDispatch();
    const navigate = useNavigate()
 
