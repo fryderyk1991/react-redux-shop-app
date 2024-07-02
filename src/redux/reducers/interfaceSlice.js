@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
-  modalIsOpen: false,
-  modalMessage: null,
+  snackbarIsOpen: false,
+  snackbarMessage: null,
 };
 
 export const interfaceSlice = createSlice({
@@ -16,18 +16,18 @@ export const interfaceSlice = createSlice({
     setClose: (state) => {
       state.isOpen = false;
     },
-    setModalOpen: (state, action) => {
-      state.modalIsOpen = true;
-      state.modalMessage = action.payload
+    setSnackbarOpen: (state, action) => {
+      state.snackbarIsOpen = true;
+      state.snackbarMessage = action.payload
     },
-    setModalClose: (state) => {
-      state.modalIsOpen = false;
-      state.modalMessage = null;
+    setSnackbarClose: (state) => {
+      state.snackbarIsOpen = false;
+      state.snackbarMessage = null;
     }
   },  
 });
 
-export const { setOpen, setClose, setModalOpen, setModalClose} = interfaceSlice.actions;
+export const { setOpen, setClose, setSnackbarOpen, setSnackbarClose} = interfaceSlice.actions;
 
 
 export default interfaceSlice.reducer
