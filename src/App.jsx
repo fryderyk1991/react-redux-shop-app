@@ -19,7 +19,7 @@ import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged } from "firebase/auth";
 import { clearCart, fetchCart } from './redux/reducers/cartSlice';
 import { fetchFavorites } from './redux/reducers/favoriteSlice';
-
+import AutohideSnackbar from './components/Snackbar';
 
   
 
@@ -83,6 +83,7 @@ function App() {
     <Header/>
     <MobileNav />
     <Outlet />
+    <AutohideSnackbar />
     </Box>
     <Footer />
     </ThemeProvider>

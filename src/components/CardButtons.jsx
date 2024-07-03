@@ -10,7 +10,6 @@ import { handleFavorites } from '../redux/reducers/favoriteSlice';
 import { saveCart } from '../redux/reducers/cartSlice';
 import { setSnackbarOpen } from "../redux/reducers/interfaceSlice";
 
-import AutohideSnackbar from "./Snackbar";
 
 const CardButtons = ({ properIcons, id }) => {
   const dispatch = useDispatch();
@@ -76,7 +75,6 @@ const CardButtons = ({ properIcons, id }) => {
               >
                 <FavoriteBorderIcon />
               </IconButton>
-            <AutohideSnackbar />
             </>
           )}
         </>
@@ -125,7 +123,6 @@ const CardButtons = ({ properIcons, id }) => {
                 >
                   <FavoriteBorderIcon />
                 </Button>
-            <AutohideSnackbar />
             </Box>
           )}
         </>
