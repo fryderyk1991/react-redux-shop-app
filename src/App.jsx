@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider, Box } from '@mui/material';
 
 import { useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setLoading, LoginUser } from './redux/reducers/userSlice';
 import { fetchProducts } from './redux/reducers/productsSlice';
