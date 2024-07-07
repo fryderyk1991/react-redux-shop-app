@@ -6,6 +6,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import BurgerBtn from "./BurgerBtn";
 import DesktopNav from "./DesktopNav";
 import SiginGoogle from "./SiginGoogle";
+import LogoutButton from "./LogoutButton";
 
 import { useSelector } from "react-redux";
 
@@ -24,12 +25,12 @@ const Header = () => {
           aria-label="logo"
           component={ReactRouterLink}
           to="/"
-          sx={{ textDecoration: "none", flex: 1 }}
+          sx={{ textDecoration: "none", flex: 1}}
         >
           SFJ
         </Typography>
         <DesktopNav />
-       
+
           <Box sx={{ zIndex: 1300, display: "flex", alignItems: "center" }}>
             {user ? (
               <>
@@ -40,6 +41,10 @@ const Header = () => {
                 <Typography variant="body1" component="span">
                   {user.name}
                 </Typography>
+                <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}}} >
+                <LogoutButton />
+                </Box>
+    
               </>
             ) : (
               <SiginGoogle>

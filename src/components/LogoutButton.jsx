@@ -26,14 +26,13 @@ const LogoutButton = () => {
 
   return (
     <div onClick={handleSignout}>
-      <Box sx={{ width: "100%", ml: 2, display: "flex", alignItems: "center" }}>
-      <IconButton size="small">
-        <LogoutIcon />
-      </IconButton>
-      <Typography sx={{ ml: 1 }}>Logout</Typography>
-    </Box>
+      <Box sx={{ width: "100%", ml: 1, display: "flex", alignItems: "center", cursor: 'pointer' }}>
+        <IconButton size="large">
+          <LogoutIcon />
+        </IconButton>
+        <Typography>Logout</Typography>
+      </Box>
     </div>
-    
   );
 };
 

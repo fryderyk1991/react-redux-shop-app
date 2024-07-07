@@ -13,6 +13,7 @@ import LogoutButton from './LogoutButton';
 
 const MobileNav = () => {
   const isOpen = useSelector((state) => state.interface.isOpen);
+  const user = useSelector(state => state.user.user);
   const favAmount = useSelector(favoritesAmount)
   const cAmount = useSelector(cartAmount)
   const dispatch = useDispatch();
@@ -52,7 +53,9 @@ const MobileNav = () => {
             </ListItem>
           ))}
         </List>
-        <LogoutButton />
+          {user && (
+             <LogoutButton />
+          )}
       </Box>
     </>
   );
