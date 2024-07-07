@@ -7,13 +7,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import store from './redux/store';
 
 import HomePage from "./pages/HomePage";
-import ContactPage from "./pages/ContactPage";
+
 import FavoritePage from './pages/FavoritePage';
 import CartPage from './pages/CartPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
-import AuthenticationPage from './pages/AuthenticationPage';
-import Login from './components/Login';
-import Signup from './components/Signup';
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductsError from './pages/ProductsError';
 import { productDetailsPageLoader } from './helpers/detailsPageLoader';
@@ -29,10 +26,6 @@ const router = createBrowserRouter([
           element: <HomePage />,
         },
         {
-          path: "contact",
-          element: <ContactPage />,
-        },
-        {
           path: "favorite",
           element: <FavoritePage />,
         },
@@ -45,24 +38,6 @@ const router = createBrowserRouter([
           element: <ProductDetailsPage />,
           loader: productDetailsPageLoader,
           errorElement: <ProductsError />
-        },
-        {
-          path: "auth",
-          element: <AuthenticationPage />,
-          children: [
-            {
-              path: "", 
-              element: <Login />
-            },
-            {
-              path: "login",
-              element: <Login />
-            },
-            {
-              path: "signup",
-              element: <Signup />
-            }
-          ]
         },
         {
           path: "*",

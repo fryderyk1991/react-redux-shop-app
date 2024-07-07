@@ -1,10 +1,4 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-
+import {Box, Drawer, List, ListItem, ListItemButton, ListItemIcon} from '@mui/material';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setClose } from '../redux/reducers/interfaceSlice';
@@ -15,9 +9,9 @@ import { routes } from "../routes";
 
 import { Link as ReactRouterLink } from "react-router-dom";
 
+import LogoutButton from './LogoutButton';
 
 const MobileNav = () => {
-  // const user = useSelector(state => state.user.user)
   const isOpen = useSelector((state) => state.interface.isOpen);
   const favAmount = useSelector(favoritesAmount)
   const cAmount = useSelector(cartAmount)
@@ -33,7 +27,7 @@ const MobileNav = () => {
   const DrawerList = (
     <>
       <Box sx={{ width: 250 }} role="presentation" component="nav">
-        <List sx={{ my: 5 }}>
+        <List sx={{ my: 8 }}>
           {routes.map((route) => (
             <ListItem
               key={route.name}
@@ -48,17 +42,17 @@ const MobileNav = () => {
                 onClick={closeDrawer}
               >
                  <ListItemIcon sx={{ color: 'primary.main', minWidth: '40px', position: 'relative'}}>
-                <route.icon sx={{ fontSize: 28}}/>
+                <route.icon />
                 {(route.name === 'Favorite' || route.name === 'Cart') && (
                   <Box sx={{position: 'absolute', left: '0',top: '60%', color: 'white', width: '15px', height: '15px', backgroundColor: 'red', borderRadius: '50%', textAlign: 'center', lineHeight: '15px', fontSize: '12px'}}>{route.name === 'Favorite' ? favAmount : cAmount}</Box>
                 )}
-             
               </ListItemIcon>
                 {route.name}
               </ListItemButton>
             </ListItem>
           ))}
         </List>
+        <LogoutButton />
       </Box>
     </>
   );
