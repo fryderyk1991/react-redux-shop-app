@@ -7,6 +7,7 @@ import BurgerBtn from "./BurgerBtn";
 import DesktopNav from "./DesktopNav";
 import SiginGoogle from "./SiginGoogle";
 import LogoutButton from "./LogoutButton";
+import LoadCircle from "./LoadCircle";
 
 import { useSelector } from "react-redux";
 
@@ -30,30 +31,29 @@ const Header = () => {
           SFJ
         </Typography>
         <DesktopNav />
-
-          <Box sx={{ zIndex: 1300, display: "flex", alignItems: "center" }}>
-            {user ? (
-              <>
-                <IconButton size="large">
-                  <PersonIcon />
-                </IconButton>
-
-                <Typography variant="body1" component="span">
-                  {user.name}
-                </Typography>
-                <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}}} >
-                <LogoutButton />
-                </Box>
-    
-              </>
-            ) : (
-              <SiginGoogle>
+                  <Box sx={{ zIndex: 1300, display: "flex", alignItems: "center" }}>
+          {isLoading ? (
+            <LoadCircle size={20}/>
+          ) : user ? (
+            <>
               <IconButton size="large">
                 <PersonIcon />
               </IconButton>
-              </SiginGoogle>
-            )}
-          </Box>
+              <Typography variant="body1" component="span">
+                {user.name}
+              </Typography>
+              <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}}} >
+                <LogoutButton />
+              </Box>
+            </>
+          ) : (
+            <SiginGoogle>
+              <IconButton size="large">
+                <PersonIcon />
+              </IconButton>
+            </SiginGoogle>
+          )}
+        </Box>
        
         <BurgerBtn />
       </Toolbar>

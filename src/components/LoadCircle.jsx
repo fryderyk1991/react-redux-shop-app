@@ -1,11 +1,14 @@
-import { CircularProgress, Box } from "@mui/material"
+import PropTypes from 'prop-types'
+import { CircularProgress } from "@mui/material"
 
-const LoadCircle = () => {
+const LoadCircle = ({size}) => {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}>
-    <CircularProgress />
-    </Box>
+    <CircularProgress size={size} />
   )
 }
+
+LoadCircle.propTypes = {
+  size: PropTypes.number.isRequired
+} 
 
 export default LoadCircle
