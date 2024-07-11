@@ -1,8 +1,4 @@
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import {Box, List, ListItem, ListItemButton, ListItemIcon} from "@mui/material"
 
 
 import { routes } from "../routes";
@@ -16,7 +12,7 @@ const DesktopNav = () => {
   const favAmount = useSelector(favoritesAmount)
   const cAmount = useSelector(cartAmount)
   return (
-      <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}}}>
+      <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}, mr: 5}}>
         <List sx={{ display: 'flex'}}>
           {routes.map((route) => (
             <ListItem

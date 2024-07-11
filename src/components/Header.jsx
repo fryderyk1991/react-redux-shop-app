@@ -13,8 +13,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const { user, isLoading } = useSelector((state) => state.user);
-  console.log(isLoading);
-
+  
   return (
     <AppBar
       position="static"

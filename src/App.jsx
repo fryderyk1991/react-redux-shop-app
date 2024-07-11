@@ -68,7 +68,6 @@ function App() {
         dispatch(setLoading(false))
       }
       else {
-        console.log('The user is not logged in')
         dispatch(clearFavorites())
         dispatch(clearCart())
       }
