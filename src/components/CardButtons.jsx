@@ -25,7 +25,7 @@ const CardButtons = ({ properIcons, id }) => {
 
   const handleFavorite = (id) => {
     if (!user) {
-      dispatch(setSnackbarOpen("Zaloguj się, aby dodać do ulubionych"));
+      dispatch(setSnackbarOpen("Sign in if you want to add to favorites"));
     } else {
       const updatedFavoritesProducts = favoritesProducts.includes(id)
         ? favoritesProducts.filter((itemId) => itemId !== id)
@@ -49,7 +49,7 @@ const CardButtons = ({ properIcons, id }) => {
   };
   const handleCart = () => {
     if (!user) {
-      dispatch(setSnackbarOpen("Zaloguj się, aby dodać do koszyka"));
+      dispatch(setSnackbarOpen("Sign in if you want to add to the cart"));
     } else if (user && !cartProducts.includes(id)) {
       dispatch(
         saveCart({ userId: user.uid, cartProducts: [...cartProducts, id] })

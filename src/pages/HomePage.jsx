@@ -10,7 +10,7 @@ const HomePage = () => {
   const { productsData, loading } = useSelector((state) => state.products);
 
   return (
-    <Container>
+    <Container sx={{mb: 5}}>
       {loading && productsData.length === 0 ? (
         <Box
           sx={{

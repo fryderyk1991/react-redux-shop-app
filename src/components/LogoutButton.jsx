@@ -5,6 +5,7 @@ import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 
 import { LogoutUser, setLoading } from "../redux/reducers/userSlice";
+import { setClose } from "../redux/reducers/interfaceSlice";
 
 import { useDispatch } from "react-redux";
 
@@ -16,6 +17,7 @@ const LogoutButton = () => {
     try {
       await signOut(auth);
       dispatch(LogoutUser());
+      dispatch(setClose())
     } catch (error) {
       console.log(error);
     }
@@ -26,11 +28,11 @@ const LogoutButton = () => {
 
   return (
     <div onClick={handleSignout}>
-      <Box sx={{ width: "100%", ml: 1, display: "flex", alignItems: "center", cursor: 'pointer' }}>
-        <IconButton size="large">
-          <LogoutIcon />
+      <Box  sx={{ width: "100%", ml: 1, display: "flex", alignItems: "center", cursor: 'pointer' }}>
+        <IconButton size="large" sx={{ color: 'primary.main'}}>
+          <LogoutIcon  />
         </IconButton>
-        <Typography>Logout</Typography>
+        <Typography sx={{ color: '#000', fontWeight: 500}}>Logout</Typography>
       </Box>
     </div>
   );

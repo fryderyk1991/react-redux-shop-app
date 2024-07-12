@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
+import { motion } from "framer-motion";
 
 import { Link as ReactRouterLink } from "react-router-dom";
 
@@ -13,7 +14,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const { user, isLoading } = useSelector((state) => state.user);
-  
+
   return (
     <AppBar
       position="static"
@@ -25,35 +26,49 @@ const Header = () => {
           aria-label="logo"
           component={ReactRouterLink}
           to="/"
-          sx={{ textDecoration: "none", flex: 1}}
+          sx={{ textDecoration: "none", flex: 1 }}
         >
           SFJ
         </Typography>
         <DesktopNav />
-                  <Box sx={{ zIndex: 1300, display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", alignItems: "center"}}>
           {isLoading ? (
-            <LoadCircle size={20}/>
+            <LoadCircle size={20} />
           ) : user ? (
-            <>
-              <IconButton size="large">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <IconButton size="large" sx={{ color: "primary.main" }}>
                 <PersonIcon />
               </IconButton>
-              <Typography variant="body1" component="span">
+              <Typography
+                variant="body1"
+                component="span"
+                sx={{ fontWeight: 500, color: "#000" }}
+              >
                 {user.name}
               </Typography>
-              <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}}} >
+              <Box sx={{ display: { md: "block", xs: "none", sm: "none" } }}>
                 <LogoutButton />
               </Box>
-            </>
+            </motion.div>
           ) : (
             <SiginGoogle>
-              <IconButton size="large">
-                <PersonIcon />
-              </IconButton>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <IconButton size="large">
+                  <PersonIcon />
+                </IconButton>
+              </motion.div>
             </SiginGoogle>
           )}
         </Box>
-       
+
         <BurgerBtn />
       </Toolbar>
     </AppBar>

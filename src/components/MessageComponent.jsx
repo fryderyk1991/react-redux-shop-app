@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 const MessageComponent = ( {text} ) => {
   return (
     <Box sx={{ minHeight: '100vh', alignContent: 'center'}}>
-        <Typography sx={{ textAlign: 'center', fontWeight: '400', opacity: 0.8}} variant="h2">{text}</Typography>
+        <Typography sx={{ textAlign: 'center', fontWeight: '400', opacity: 0.8}} variant="h3" component='p'>{text}</Typography>
     </Box>
   )
 }
