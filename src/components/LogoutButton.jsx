@@ -1,4 +1,4 @@
-import { IconButton, Box, Typography } from "@mui/material";
+import { ListItem, ListItemButton, ListItemIcon, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import { auth } from "../../firebase/firebaseConfig";
@@ -27,14 +27,14 @@ const LogoutButton = () => {
   };
 
   return (
-    <div onClick={handleSignout}>
-      <Box  sx={{ width: "100%", ml: 1, display: "flex", alignItems: "center", cursor: 'pointer' }}>
-        <IconButton size="large" sx={{ color: 'primary.main'}}>
-          <LogoutIcon  />
-        </IconButton>
-        <Typography sx={{ color: '#000', fontWeight: 500}}>Logout</Typography>
-      </Box>
-    </div>
+    <ListItem disablePadding sx={{ mt: { xs: 8, md: 0 }}}>
+      <ListItemButton onClick={handleSignout}>
+        <ListItemIcon sx={{ color: 'primary.main', minWidth: '40px' }}>
+          <LogoutIcon />
+        </ListItemIcon>
+        <Typography sx={{ color: '#000', fontWeight: 500 }}>Logout</Typography>
+      </ListItemButton>
+    </ListItem>
   );
 };
 

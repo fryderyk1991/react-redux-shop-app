@@ -31,7 +31,7 @@ const Header = () => {
           SFJ
         </Typography>
         <DesktopNav />
-        <Box sx={{ display: "flex", alignItems: "center"}}>
+        <>
           {isLoading ? (
             <LoadCircle size={20} />
           ) : user ? (
@@ -40,18 +40,20 @@ const Header = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <IconButton size="large" sx={{ color: "primary.main" }}>
-                <PersonIcon />
-              </IconButton>
-              <Typography
-                variant="body1"
-                component="span"
-                sx={{ fontWeight: 500, color: "#000" }}
-              >
-                {user.name}
-              </Typography>
-              <Box sx={{ display: { md: "block", xs: "none", sm: "none" } }}>
-                <LogoutButton />
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <IconButton size="large" sx={{ color: "primary.main" }}>
+                  <PersonIcon />
+                </IconButton>
+                <Typography
+                  variant="body1"
+                  component="span"
+                  sx={{ fontWeight: 500, color: "#000" }}
+                >
+                  {user.name}
+                </Typography>
+                <Box sx={{ display: { md: "block", xs: "none", sm: "none"},  ml: {md: 2} }}>
+                  <LogoutButton />
+                </Box>
               </Box>
             </motion.div>
           ) : (
@@ -67,8 +69,7 @@ const Header = () => {
               </motion.div>
             </SiginGoogle>
           )}
-        </Box>
-
+        </>
         <BurgerBtn />
       </Toolbar>
     </AppBar>

@@ -50,10 +50,10 @@ const MobileNav = () => {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
-          {user && (
-             <LogoutButton />
+              {user && (
+             <LogoutButton/>
           )}
+        </List>
       </Box>
     </>
   );
