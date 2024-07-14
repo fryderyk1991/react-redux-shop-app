@@ -31,7 +31,7 @@ const GridCard = ({ src, title, price, id }) => {
             {title}
           </Link>
           <Typography variant="body1" fontWeight={500} mt={1} >
-            {price},00$
+          ${price},00
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between'}}>

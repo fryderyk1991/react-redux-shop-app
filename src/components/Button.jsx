@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types'
 import { Button } from '@mui/material'
 
-const BasicButton = ( { value, onClick } ) => {
+const BasicButton = ( { value, onClick, width } ) => {
   return (
-    <Button onClick={onClick} variant='outlined'>{value}</Button>
+    <Button onClick={onClick} sx={{width: width}} variant='outlined'>{value}</Button>
   ) 
 }
 
 BasicButton.propTypes = {
     value: PropTypes.string.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    width: PropTypes.string
 }
 
 export default BasicButton

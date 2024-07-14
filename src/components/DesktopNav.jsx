@@ -15,14 +15,14 @@ const DesktopNav = () => {
       <Box sx={{ display: { md: "block", xs: 'none', sm: 'none'}, mr: 5}}>
         <List sx={{ display: 'flex'}}>
           {routes.map((route) => (
-            <ListItem
+            <ListItem 
               key={route.name}
               disablePadding
               sx={{
                 fontWeight: 500,
               }}
             >
-              <ListItemButton sx={{ ":hover": { color: 'primary.main', background: 'none' } }}
+              <ListItemButton 
                 component={ReactRouterLink}
                 to={route.path}
               >

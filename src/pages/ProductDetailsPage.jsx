@@ -29,7 +29,7 @@ const ProductDetailsPage = () => {
   },[product])
 
   return (
-  <Container sx={{ display: { md: "flex" } }}>
+  <Container sx={{ mt: 3, display: { md: "flex" } }}>
     {product ? (
       <>
         <Box sx={{ flex: 1 }}>

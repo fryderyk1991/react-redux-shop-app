@@ -50,6 +50,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(setLoading(true))
   }, [dispatch])
   
 
@@ -81,7 +82,7 @@ function App() {
     <Box sx={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
     <Header/>
     <MobileNav />
-    <Outlet />
+    <Outlet/>
     <AutohideSnackbar />
     </Box>
     <Footer />
