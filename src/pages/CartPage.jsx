@@ -90,7 +90,7 @@ const CartPage = () => {
                     {cart.map((item) => (
                       <Box
                         key={item.id}
-                        sx={{ mt: 3, display: "flex", alignItems: "center" }}
+                        sx={{ mt: 5, display: "flex", alignItems: "center" }}
                       >
                         <CardMedia
                           onClick={() => navigate(`/product/${item.id}`)}
@@ -100,7 +100,7 @@ const CartPage = () => {
                           data-id={item.id}
                           sx={{
                             cursor: "pointer",
-                            maxWidth: { xs: 120, md: 100 },
+                            maxWidth: { xs: 120, md: 150 },
                           }}
                         />
                         <Box
@@ -109,7 +109,7 @@ const CartPage = () => {
                             flexDirection: "column",
                             flex: 1,
                             gap: 1,
-                            ml: 1,
+                            ml: 3,
                           }}
                         >
                           <Typography variant="body1" component="h3">
@@ -162,7 +162,8 @@ const CartPage = () => {
                       </Box>
                     ))}
                   </Box>
-                  <Box sx={{ width: { md: "40%" }, mt: { xs: 8, md: 10 } }}>
+                  <Box sx={{ width: { md: "40%" }, mt: { xs: 8, md: 10 }}}>
+                 
                     <Box
                       sx={{ display: "flex", justifyContent: "space-between" }}
                     >
@@ -182,7 +183,7 @@ const CartPage = () => {
                       </Typography>
                     </Box>
                     <Divider sx={{ mt: 2, mb: 4 }} />
-                    <Button value={"Order"} width={"100%"} />
+                    <Button value={"Order"} width={"100%"}/>
                   </Box>
                 </>
               </Box>
