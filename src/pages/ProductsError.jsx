@@ -1,13 +1,17 @@
-import { Link, useRouteError } from "react-router-dom"
+import { Typography, Box, Container } from "@mui/material";
+import {  useRouteError, useNavigate } from "react-router-dom";
+import BasicButton from "../components/Button";
 
 const ProductsError = () => {
-    const error = useRouteError()
+    const error = useRouteError();
+    const navigate = useNavigate()
   return (
-    <div>
-        <h2>Error</h2>
-        <p>{error.message}</p>
-        <Link to='/'>Back to homepage</Link>
-    </div>     
+    <Container sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+      <Box>
+      <Typography variant="h3" component='p' sx={{mb: 4}}>{error.message}</Typography>
+      <BasicButton value={'Go Home'} onClick={() => navigate('/')}/>
+      </Box>
+    </Container>
   )
 }
 

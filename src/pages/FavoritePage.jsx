@@ -11,7 +11,6 @@ import LoadCircle from "../components/LoadCircle";
 
 const FavoritePage = () => {
   const [favorites, setFavorites] = useState([]);
-  // const products = useSelector(state => state.products.productsData);
   const { productsData, loading } = useSelector((state) => state.products);
   const favoritesIdArray = useSelector(state => state.favorites.favoritesProducts)
 
