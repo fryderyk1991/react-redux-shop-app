@@ -5,7 +5,8 @@ import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider, Box } from '@mui/material';
+import { ThemeProvider, Box } from '@mui/material';
+import { theme } from './theme';
 
 import { useEffect } from 'react';
 
@@ -21,33 +22,9 @@ import { clearCart, fetchCart } from './redux/reducers/cartSlice';
 import { fetchFavorites } from './redux/reducers/favoriteSlice';
 import AutohideSnackbar from './components/Snackbar';
 
-  
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffac33',
-      dark: '#212121'
-    },
-    secondary: {
-      main: '#bdbdbd',
-    }
-  },
-  typography: {
-    allVariants: {
-      color: '#212121'
-    },
-    fontFamily: 'Quicksand',
-    h6: {
-      fontFamily: 'Rosarivo',
-    }
-    
-  },
-})
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(setLoading(true))
@@ -71,6 +48,7 @@ function App() {
       else {
         dispatch(clearFavorites())
         dispatch(clearCart())
+        dispatch(setLoading(false))
       }
     });
     return () => unsubscribe()
