@@ -1,4 +1,8 @@
+[build]
+  publish = "build"
+  command = "npm run build"
+
 [[headers]]
   for = "/*"
-  [headers.values]
-    Cross-Origin-Opener-Policy = "same-origin"
+    [headers.values]
+      Cross-Origin-Opener-Policy = "same-origin"
