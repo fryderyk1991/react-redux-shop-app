@@ -1,4 +1,4 @@
-
+x
 ![e-com - home](https://github.com/user-attachments/assets/0d8bf0bf-00db-457f-a873-98de0fc40524)
 ![e-com-cartPage](https://github.com/user-attachments/assets/cb59d894-28d9-4817-ba0f-e6ca3451e5c8)
 ![e-com - productDetails](https://github.com/user-attachments/assets/fd679d51-a0c8-4783-8b7b-484a2378ad12)
@@ -8,9 +8,13 @@
 
 # React-Redux-Shop
 I want to present you a live version of [React-Redux-Shop](https://react-redux-firebase-app.netlify.app).
+
 This project has helped me understand how to work with redux-toolkit. I know that a better option might be to use React Context, but I want to improve my understanding of redux.
+
 I also want to understand how to work with database, so I decided to use Firebase with an authentication and real-time database. I used for the first time MUI as an alternative to CSS.
+
 The project is not done yet. I need to correct some small mistakes. I didn't focus here on the best look, so don't be surprised :P
+
 I'd describe this project as a full-stack because the user can log in and add products to the cart or favorites, which are connected to the database. 
 
 ## 💡 Technologies
