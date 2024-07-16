@@ -4,7 +4,9 @@
 ![e-com - productDetails](https://github.com/user-attachments/assets/fd679d51-a0c8-4783-8b7b-484a2378ad12)
 
 
-#React-Redux-Shop
+
+
+# React-Redux-Shop
 I want to present you a live version of [React-Redux-Shop](https://react-redux-firebase-app.netlify.app).
 This project has helped me understand how to work with redux-toolkit. I know that a better option might be to use React Context, but I want to improve my understanding of redux.
 I also want to understand how to work with database, so I decided to use Firebase with an authentication and real-time database. I used for the first time MUI as an alternative to CSS.
@@ -22,5 +24,6 @@ I'd describe this project as a full-stack because the user can log in and add pr
 
 ## 💿 Installation                       
  The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Having them installed, type into the terminal: `npm i`.
+ 
 ## 🙋‍♂️ Feel free to contact me
 Find me on [Linkedin](https://www.linkedin.com/in/fryderyk-jellinek/) 
