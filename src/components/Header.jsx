@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
+import { AppBar, Toolbar, Typography, IconButton, Box} from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { motion } from "framer-motion";
 

@@ -11,18 +11,18 @@ const AutohideSnackbar = () => {
 
   return (
     <div>
-       <Snackbar 
+       <Snackbar
        elevation={6}
                 open={snackbarIsOpen}
                 autoHideDuration={3000}
                 onClose={() => dispatch(setSnackbarClose())}
             >
-                <SnackbarContent 
+                <SnackbarContent sx={{ p: 1}}
                     message={
                         <Box sx={{display: 'flex', alignItems: 'center'}}>
-                            <Typography variant='subtitle' sx={{ color: '#fff'}}>{snackbarMessage}</Typography>
+                            <Typography variant='subtitle' sx={{ color: '#fff', mr: 2}}>{snackbarMessage}</Typography>
                             <SiginGoogle>
-                            <Button variant='outlined' sx={{ ml: 2 }}>Sign in</Button>
+                            <Button variant='outlined'>Sign in</Button>
                             </SiginGoogle>
                         </Box>
                         

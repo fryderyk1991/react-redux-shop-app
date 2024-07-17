@@ -84,7 +84,16 @@ const ProductDetailsPage = () => {
     </Box>
     </>
     ) : (
-      <LoadCircle />
+      <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <LoadCircle size={32} />
+    </Box>
     )}
 </Container>
   );

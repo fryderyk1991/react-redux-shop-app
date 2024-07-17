@@ -18,7 +18,7 @@ import {
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 import { deleteProductFromCart } from "../redux/reducers/cartSlice";
-import Button from "../components/Button";
+import BasicButton from "../components/Button";
 import LoadCircle from "../components/LoadCircle";
 import MessageComponent from "../components/MessageComponent";
 
@@ -31,6 +31,7 @@ const CartPage = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const filterCart = matchProductsWithId(productsData, cartIdArray);
@@ -112,7 +113,7 @@ const CartPage = () => {
                             ml: 3,
                           }}
                         >
-                          <Typography variant="body1" component="h3">
+                          <Typography variant="body1" component="h3" sx={{mb: 1}}>
                             {item.title}
                           </Typography>
                           <FormControl>
@@ -141,13 +142,13 @@ const CartPage = () => {
                               <MenuItem value={10}>10</MenuItem>
                             </Select>
                           </FormControl>
-                          <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                          <Typography variant="body1" sx={{ fontWeight: 500, mt: 1 }}>
                             ${quantinities[item.id]?.totalPrice || item.price}
                             ,00
                           </Typography>
                         </Box>
                         <IconButton
-                          sx={{ color: "primary.main" }}
+                          sx={{ color: "primary.main", ml: 1}}
                           onClick={() =>
                             dispatch(
                               deleteProductFromCart({
@@ -183,7 +184,9 @@ const CartPage = () => {
                       </Typography>
                     </Box>
                     <Divider sx={{ mt: 2, mb: 4 }} />
-                    <Button value={"Order"} width={"100%"}/>
+                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <BasicButton value={"order now"} variant='outlined'/>
+                    </Box>
                   </Box>
                 </>
               </Box>

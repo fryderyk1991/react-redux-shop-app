@@ -26,7 +26,7 @@ const HomePage = () => {
         <GridContainer gridItems={productsData} />
       )}
       <>
-        {!loading ||
+        {!loading &&
           (productsData.length === 0 && (
             <MessageComponent
               text={"Sorry the products are not available at this moment"}
