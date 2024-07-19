@@ -4,6 +4,8 @@ const initialState = {
   isOpen: false,
   snackbarIsOpen: false,
   snackbarMessage: null,
+  modalIsOpen: false,
+  modalCartTotalPrice: null,
 };
 
 export const interfaceSlice = createSlice({
@@ -23,11 +25,19 @@ export const interfaceSlice = createSlice({
     setSnackbarClose: (state) => {
       state.snackbarIsOpen = false;
       state.snackbarMessage = null;
+    },
+    setModalOpen: (state, action) => {
+      state.modalIsOpen = true;
+      state.modalCartTotalPrice = action.payload
+    },
+    setModalClose: (state) => {
+      state.modalIsOpen = false;
+      state.modalCartTotalPrice = null;
     }
   },  
 });
 
-export const { setOpen, setClose, setSnackbarOpen, setSnackbarClose} = interfaceSlice.actions;
+export const { setOpen, setClose, setSnackbarOpen, setSnackbarClose, setModalOpen, setModalClose} = interfaceSlice.actions;
 
 
 export default interfaceSlice.reducer
