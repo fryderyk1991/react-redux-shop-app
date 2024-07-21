@@ -18,6 +18,7 @@ import {
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 import { deleteProductFromCart } from "../redux/reducers/cartSlice";
+import { setModalOpen } from "../redux/reducers/interfaceSlice";
 import BasicButton from "../components/Button";
 import LoadCircle from "../components/LoadCircle";
 import MessageComponent from "../components/MessageComponent";
@@ -185,7 +186,7 @@ const CartPage = () => {
                     </Box>
                     <Divider sx={{ mt: 2, mb: 4 }} />
                     <Box sx={{display: 'flex', flexDirection: 'column'}}>
-                    <BasicButton value={"order now"} variant='outlined'/>
+                    <BasicButton value={"order now"} variant='outlined' onClick={() => dispatch(setModalOpen(totalCartPrice))}/>
                     </Box>
                   </Box>
                 </>

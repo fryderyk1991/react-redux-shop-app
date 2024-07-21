@@ -29,7 +29,13 @@ export const saveCart = createAsyncThunk("cart/saveCart", async ({ userId, cartP
   }
   return null;
   });
-
+  
+  export const clearCartAfterOrder = createAsyncThunk("cart/clearCartAfterOrder", async ({ userId }) => {
+    const cartRef = ref(database,`users/${userId}/cart`);
+    await set(cartRef, []);
+    return [];
+  })
+  
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -53,6 +59,9 @@ const cartSlice = createSlice({
         );
       }
     });
+    builder.addCase(clearCartAfterOrder.fulfilled, (state, action) => {
+      state.cartProducts = action.payload;
+    })
   }
 });
 

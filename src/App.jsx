@@ -22,7 +22,7 @@ import { clearCart, fetchCart } from './redux/reducers/cartSlice';
 import { fetchFavorites } from './redux/reducers/favoriteSlice';
 
 import AutohideSnackbar from './components/Snackbar';
-import Modal from './components/Modal'
+import TransistionsModal from './components/Modal'
 
 function App() {
   const dispatch = useDispatch();
@@ -62,8 +62,8 @@ function App() {
     <Header/>
     <MobileNav />
     <Outlet/>
+    <TransistionsModal />
     <AutohideSnackbar />
-    <Modal />
     </Box>
     <Footer />
     </ThemeProvider>
